@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extrahead %}
+<link rel="stylesheet" type="text/css" href="{% static 'accounts/css/style.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<div class="d-flex align-items-center">
+    <div class="col-md-7">
+        <img class="img-fluid" src="{% static 'img/chart-close-up-data-desk-590022.jpg' %}" alt="chart-close-up-data-desk-590022">
+    </div>
+    <div class="col-md-5">
+        {% block content2 %}
+        {% endblock %}
+    </div>
+</div>
+{% endblock %}

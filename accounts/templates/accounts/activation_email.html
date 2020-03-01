@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+</html>
+<body>
+    <p>Hi {{ user.username }},</p>
+
+    <h2>Please click the link below to verify your account</h2>
+    <button><a href="http://{{ domain }}{% url 'accounts:activate' uidb64=uid token=token %}">VERIFY</a></button>
+    <p>or</p>
+    <h3>Copy and past the link <a href="http://{{ domain }}{% url 'accounts:activate' uidb64=uid token=token %}">http://{{ domain }}{% url 'accounts:activate' uidb64=uid token=token %}</a> into the browser</h3>
+
+    <p>Cheers!</p>
+    <br>
+    <hr>
+    <p>Please disregard this mail if you did not sign up an account on <a href="{{ domain }}">{{ domain }}</a></p>
+</body>
