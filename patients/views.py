@@ -48,6 +48,7 @@ class PatientEdit(LoginRequiredMixin, UpdateView):
     def get_context_data(self, *args, **kwargs):
         context = super(PatientEdit, self).get_context_data(*args, **kwargs)
         context["patient"] = get_object_or_404(Patient, user=self.request.user)
+        context["form_title"] = "Edit General Information"
         return context
 
     def get_object(self):
@@ -63,6 +64,7 @@ class HistoryAdd(LoginRequiredMixin, CreateView):
     def get_context_data(self, *args, **kwargs):
         context = super(HistoryAdd, self).get_context_data(*args, **kwargs)
         context["patient"] = get_object_or_404(Patient, user=self.request.user)
+        context["form_title"] = "Add Medical History"
         return context
 
     def form_valid(self, form):
@@ -80,18 +82,20 @@ class HistoryEdit(LoginRequiredMixin, UpdateView):
     def get_context_data(self, *args, **kwargs):
         context = super(HistoryEdit, self).get_context_data(*args, **kwargs)
         context["patient"] = get_object_or_404(Patient, user=self.request.user)
+        context["form_title"] = "Edit Medical History"
         return context
 
 
 class DietAdd(CreateView, LoginRequiredMixin):
     model = Diet
-    fields = ["carbs", "fats", "dietary_fiber", "minerals", "proteins", "vitamins", "water"]
+    fields = ["carbs", "fats", "dietary_fiber", "minerals", "proteins", "vitamins", "water", "frequency"]
     template_name = "patients/diet_form.html"
     success_url = reverse_lazy("patients:home")
 
     def get_context_data(self, *args, **kwargs):
         context = super(DietAdd, self).get_context_data(*args, **kwargs)
         context["patient"] = get_object_or_404(Patient, user=self.request.user)
+        context["form_title"] = "Add Diet Percentage Composition"
         return context
 
     def form_valid(self, form):
@@ -101,13 +105,14 @@ class DietAdd(CreateView, LoginRequiredMixin):
 
 class DietEdit(LoginRequiredMixin, UpdateView):
     model = Diet
-    fields = ["carbs", "fats", "dietary_fiber", "minerals", "proteins", "vitamins", "water"]
+    fields = ["carbs", "fats", "dietary_fiber", "minerals", "proteins", "vitamins", "water", "frequency"]
     template_name = "patients/diet_form.html"
     success_url = reverse_lazy("patients:home")
 
     def get_context_data(self, *args, **kwargs):
         context = super(DietEdit, self).get_context_data(*args, **kwargs)
         context["patient"] = get_object_or_404(Patient, user=self.request.user)
+        context["form_title"] = "Edit Diet Percentage Composition"
         return context
 
 

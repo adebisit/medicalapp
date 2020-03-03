@@ -22,3 +22,7 @@ a {
     font-size: 14px;
     margin-bottom: 0.25rem;
 }
+
+.list-display {
+    display: list-item;
+}

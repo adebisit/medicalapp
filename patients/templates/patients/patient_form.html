@@ -7,7 +7,8 @@
 
 {% block content2 %}
 <div class="">
-    <h1 class="text-center">{{ patient }}</h1>
+    <h1 class="text-center font-weight-bold">{{ patient }}</h1>
+    <h5 class="text-center">{{ form_title }}</h5>
     <hr>
     <div class="content">
         <form class="p-5 col-md-8 mx-auto" method="POST">
@@ -23,7 +24,7 @@
             
             <!-- Gender -->
             <div class="mb-4">
-                {% render_field form.gender.label %}
+                <label>{% render_field form.gender.label %}</label>
                 {% render_field form.gender id="gender" class="form-control mb-2" %}
                 {% for error in form.gender.errors %}
                 <p class="error-message">{{ error }}</p>
@@ -32,7 +33,7 @@
 
             <!-- DOB -->
             <div class="mb-4">
-                {% render_field form.dob.label %}
+                <label>{% render_field form.dob.label %}</label>
                 {% render_field form.dob id="dob" class="form-control mb-2" data-toggle="datepicker" %}
                 {% for error in form.dob.errors %}
                 <p class="error-message">{{ error }}</p>
@@ -41,7 +42,7 @@
 
             <!-- Blood Group -->
             <div class="mb-4">
-                {% render_field form.blood_group.label %}
+                <label>{% render_field form.blood_group.label %}</label>
                 {% render_field form.blood_group id="blood_group" class="form-control mb-2" %}
                 {% for error in form.blood_group.errors %}
                 <p class="error-message">{{ error }}</p>
@@ -50,7 +51,7 @@
             
             <!-- Genotype -->
             <div class="mb-4">
-                {% render_field form.genotype.label %}
+                <label>{% render_field form.genotype.label %}</label>
                 {% render_field form.genotype id="genotype" class="form-control mb-2" %}
                 {% for error in form.genotype.errors %}
                 <p class="error-message">{{ error }}</p>
@@ -59,7 +60,7 @@
 
             <!-- Height -->
             <div class="mb-4">
-                {% render_field form.height.label %}
+                <label>{% render_field form.height.label %} (meters)</label>
                 {% render_field form.height id="height" class="form-control mb-2" %}
                 {% for error in form.height.errors %}
                 <p class="error-message">{{ error }}</p>
@@ -68,7 +69,7 @@
         
             <!-- Weight  -->
             <div class="mb-4">
-                {% render_field form.weight.label %}
+                <label>{% render_field form.weight.label %} (kilogramme)</label>
                 {% render_field form.weight id="weight" class="form-control mb-2" %}
                 {% for error in form.weight.errors %}
                 <p class="error-message">{{ error }}</p>
@@ -85,7 +86,7 @@
 <script>
     $('[data-toggle="datepicker"]').datepicker({
         format: "yyyy-mm-dd",
-        
     });
 </script>
+
 {% endblock %}

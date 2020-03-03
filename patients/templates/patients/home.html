@@ -7,7 +7,7 @@
 
 {% block content2 %}
 <div class="">
-    <h1 class="text-center">{{ patient }}</h1>
+    <h1 class="text-center font-weight-bold">{{ patient }}</h1>
     <div class="content">
         <div class="section">
             <div class="section-header">
@@ -18,37 +18,37 @@
             </div>
             <hr>
             <div class="row section-body justify-content-between">
-                <div class="col-md-3 prop">
+                <div class="col-md-3 prop mb-2">
                     <p>DOB: </p>
                     <p>{{ patient.dob }}</p>
                 </div>
-                <div class="col-md-3 prop">
+                <div class="col-md-3 prop mb-2">
                     <p>Age: </p>
                     <p>{{ patient.get_age }} years</p>
                 </div>
-                <div class="col-md-3 prop">
+                <div class="col-md-3 prop mb-2">
                     <p>Blood Group: </p>
                     <p>{{ patient.get_blood_group_display }}</p>
                 </div>
-                <div class="col-md-3 prop">
+                <div class="col-md-3 prop mb-2">
                     <p>Genotype: </p>
                     <p>{{ patient.get_genotype_display }}</p>
                 </div>
             </div>
             <div class="row section-body justify-content-between">
-                <div class="col-md-3 prop">
+                <div class="col-md-3 prop mb-2">
                     <p>Height: </p>
                     <p>{{ patient.height }}m</p>
                 </div>
-                <div class="col-md-3 prop">
+                <div class="col-md-3 prop mb-2">
                     <p>Weight: </p>
                     <p>{{ patient.weight }}kg</p>
                 </div>
-                <div class="col-md-3 prop">
+                <div class="col-md-3 prop mb-2">
                     <p>BMI: </p>
                     <p>{{ patient.get_bmi }}kg/m<sup>2</sup></p>
                 </div>
-                <div class="col-md-3 prop">
+                <div class="col-md-3 prop mb-2">
                     <p>Weight Status: </p>
                     <p>{{ patient.get_weight_status }}</p>
                 </div>
@@ -66,9 +66,9 @@
             <hr>
             <div class="row section-body justify-content-between">
                 {% for diet in patient.diets.all %}
-                <div class="col-md-3 prop">
+                <div class="col-md-3 prop mb-2 list-display">
                     <p class="font-weight-bold">{{ diet.frequency }}/week</p>
-                    <canvas class="diet-chart">
+                    <canvas class="diet-chart" height="250">
                     </canvas>
                     <div class="">
                         <a href="{% url 'patients:diet_edit' diet.id %}">Edit</a>  |  <a href="{% url 'patients:diet_delete' diet.id %}">Delete</a>
@@ -154,6 +154,7 @@
                 }]
             },
             options: {
+                responsive: false,
                 maintainAspectRatio: true,
                 layout: {
                     padding: {
@@ -164,7 +165,7 @@
                     }
                 },
                 legend: {
-                    display: false,
+                    display: true,
                     position: 'bottom',
                     align: 'center',
                     fullWidth: true,

@@ -7,93 +7,207 @@
 
 {% block content2 %}
 <div class="">
-    <h1 class="text-center">{{ patient }}</h1>
+    <h1 class="text-center font-weight-bold">{{ patient }}</h1>
+    <h5 class="text-center">{{ form_title }}</h5>
     <hr>
     <div class="content">
-        <form class="p-5 col-md-8 mx-auto" method="POST">
-            {% csrf_token %}
-            {% if form.non_field_errors %}
-            <div class="form-errors">
-                {% for error in form.non_field_errors %}
-                <p>{{ error }}</p>
-                {% endfor %}
-            </div>
-            {% endif %}
+        <form class="p-5 row mx-auto justify-content-between" method="POST">
+            <div class="col-md-4">
+                {% csrf_token %}
+                {% if form.non_field_errors %}
+                <div class="form-errors">
+                    {% for error in form.non_field_errors %}
+                    <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+                {% endif %}
 
-            <!-- Carbonhydrates  -->
-            <div class="mb-4">
-                {% render_field form.carbs.label %}
-                {% render_field form.carbs id="carbs" class="form-control mb-2" %}
-                {% for error in form.carbs.errors %}
-                <p class="error-message">{{ error }}</p>
-                {% endfor %}
-            </div>
+                <!-- Carbonhydrates  -->
+                <div class="mb-4 piechart-input">
+                    <label class="d-flex justify-content-between">
+                        <p>{% render_field form.carbs.label %}</p>
+                        <p>(%)</p>
+                    </label>
+                    {% render_field form.carbs id="carbs" class="form-control mb-2" %}
+                    {% for error in form.carbs.errors %}
+                    <p class="error-message">{{ error }}</p>
+                    {% endfor %}
+                </div>
 
-            <!-- Fats -->
-            <div class="mb-4">
-                {% render_field form.fats.label %}
-                {% render_field form.fats id="fats" class="form-control mb-2" %}
-                {% for error in form.fats.errors %}
-                <p class="error-message">{{ error }}</p>
-                {% endfor %}
-            </div>
+                <!-- Fats -->
+                <div class="mb-4 piechart-input">
+                    <label class="d-flex justify-content-between">
+                        <p>{% render_field form.fats.label %}</p>
+                        <p>(%)</p>
+                    </label>
+                    {% render_field form.fats id="fats" class="form-control mb-2" %}
+                    {% for error in form.fats.errors %}
+                    <p class="error-message">{{ error }}</p>
+                    {% endfor %}
+                </div>
 
-            <!-- Dietary Fats -->
-            <div class="mb-4">
-                {% render_field form.dietary_fiber.label %}
-                {% render_field form.dietary_fiber id="dietary_fiber" class="form-control mb-2" %}
-                {% for error in form.dietary_fiber.errors %}
-                <p class="error-message">{{ error }}</p>
-                {% endfor %}
+                <!-- Dietary Fats -->
+                <div class="mb-4 piechart-input">
+                    <label class="d-flex justify-content-between">
+                        <p>{% render_field form.dietary_fiber.label %}</p>
+                        <p>(%)</p>
+                    </label>
+                    {% render_field form.dietary_fiber id="dietary_fiber" class="form-control mb-2" %}
+                    {% for error in form.dietary_fiber.errors %}
+                    <p class="error-message">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                
+                <!-- Minerals -->
+                <div class="mb-4 piechart-input">
+                    <label class="d-flex justify-content-between">
+                        <p>{% render_field form.minerals.label %}</p>
+                        <p>(%)</p>
+                    </label>
+                    {% render_field form.minerals id="minerals" class="form-control mb-2" %}
+                    {% for error in form.minerals.errors %}
+                    <p class="error-message">{{ error }}</p>
+                    {% endfor %}
+                </div>
+
+                <!-- Proteins -->
+                <div class="mb-4 piechart-input">
+                    <label class="d-flex justify-content-between">
+                        <p>{% render_field form.proteins.label %}</p>
+                        <p>(%)</p>
+                    </label>
+                    {% render_field form.proteins id="proteins" class="form-control mb-2" %}
+                    {% for error in form.proteins.errors %}
+                    <p class="error-message">{{ error }}</p>
+                    {% endfor %}
+                </div>
+
+                <!-- Vitamins -->
+                <div class="mb-4 piechart-input">
+                    <label class="d-flex justify-content-between">
+                        <p>{% render_field form.vitamins.label %}</p>
+                        <p>(%)</p>
+                    </label>
+                    {% render_field form.vitamins id="vitamins" class="form-control mb-2" %}
+                    {% for error in form.vitamins.errors %}
+                    <p class="error-message">{{ error }}</p>
+                    {% endfor %}
+                </div>
+
+                <!-- Water -->
+                <div class="mb-4 piechart-input">
+                    <label class="d-flex justify-content-between">
+                        <p>{% render_field form.water.label %}</p>
+                        <p>(%)</p>
+                    </label>
+                    {% render_field form.water id="water" class="form-control mb-2" %}
+                    {% for error in form.water.errors %}
+                    <p class="error-message">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                
+                <!-- Frequency -->
+                <div class="mb-4">
+                    <label class="d-flex justify-content-between">
+                        <p>{% render_field form.frequency.label %}</p>
+                        <p>(per week)</p>
+                    </label>
+                    {% render_field form.frequency id="frequency" class="form-control mb-2" %}
+                    {% for error in form.password.errors %}
+                    <p class="error-message">{{ error }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <canvas id="chart" class="mx-auto" height="350"></canvas>
             </div>
             
-            <!-- Minerals -->
-            <div class="mb-4">
-                {% render_field form.minerals.label %}
-                {% render_field form.minerals id="minerals" class="form-control mb-2" %}
-                {% for error in form.minerals.errors %}
-                <p class="error-message">{{ error }}</p>
-                {% endfor %}
-            </div>
-
-            <!-- Proteins -->
-            <div class="mb-4">
-                {% render_field form.proteins.label %}
-                {% render_field form.proteins id="proteins" class="form-control mb-2" %}
-                {% for error in form.proteins.errors %}
-                <p class="error-message">{{ error }}</p>
-                {% endfor %}
-            </div>
-
-            <!-- Vitamins -->
-            <div class="mb-4">
-                {% render_field form.vitamins.label %}
-                {% render_field form.vitamins id="vitamins" class="form-control mb-2" %}
-                {% for error in form.vitamins.errors %}
-                <p class="error-message">{{ error }}</p>
-                {% endfor %}
-            </div>
-
-            <!-- Water -->
-            <div class="mb-4">
-                {% render_field form.water.label %}
-                {% render_field form.water id="water" class="form-control mb-2" %}
-                {% for error in form.water.errors %}
-                <p class="error-message">{{ error }}</p>
-                {% endfor %}
-            </div>
-            
-            <!-- Frequency -->
-            <div class="mb-4">
-                {% render_field form.frequency.label %}
-                {% render_field form.frequency id="frequency" class="form-control mb-2" %}
-                {% for error in form.password.errors %}
-                <p class="error-message">{{ error }}</p>
-                {% endfor %}
-            </div>
-
-            <button class="btn btn-elegant btn-block" type="submit">Save</button>
+            <div class="col-md-4">
+                <button class="btn btn-elegant btn-block mt-4" type="submit">Save</button>
+            </form>
         </form>
     </div>
 </div>
+{% endblock %}
+
+{% block inline-scripts %}
+<script>
+    canvas = document.getElementById("chart")
+    color_selections = {
+        "Carbonhydrates": "brown",
+        "Fats": "grey",
+        "Dietary Fibre": "green",
+        "Minerals": "gold",
+        "Proteins": "ash",
+        "Vitamins": "yellow",
+        "Water": "blue"
+    }
+
+    data = {}
+    $("div.piechart-input").each( (index, e) => {
+        label = $(e).find("label > p:nth-child(1)").text()
+        value = $(e).find("input").val()
+        if (value != 0) {
+            data[label] = {
+                value: value,
+                color: color_selections[label]
+            }
+        }
+    })
+    console.log(data)
+
+    config = {
+        type: 'doughnut',
+        data: {
+            labels: Object.keys(data),
+            datasets:[{
+                data: Object.values(data).map(acc => acc.value),
+                backgroundColor: Object.values(data).map(acc => acc.color)
+            }]
+        },
+        options: {
+            responsive: false,
+            layout: {
+                padding: {
+                    left: 25,
+                    right: 25,
+                    top: 10,
+                    bottom: 10
+                }
+            },
+            legend: {
+                display: true,
+                position: 'bottom',
+                align: 'center',
+                fullWidth: true,
+                labels: {
+                    boxWidth: 20,
+                    fontSize: 11,
+                }
+            },
+            pointLabels: {
+                fontSize: 14
+            },
+        }
+    }
+    var chart = canvas.getContext('2d');
+    var pieChart = new Chart(chart, config)
+
+    $("div.piechart-input input").change(e => {
+        label = $(e.target).siblings("label").text()
+        value = $(e.target).val()
+
+        if (value == 0) { delete data[label] }
+        else {
+            if (!(label in data)) { data[label] = {} }
+            data[label].value = value
+            data[label].color = color_selections[label]
+        }
+
+        pieChart.data.labels = Object.keys(data)
+        pieChart.data.datasets[0].data = Object.values(data).map(acc => acc.value)
+        pieChart.data.datasets[0].backgroundColor = Object.values(data).map(acc => acc.color)
+        pieChart.update()
+    })
+</script>
 {% endblock %}

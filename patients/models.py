@@ -112,13 +112,13 @@ class History(models.Model):
 class Diet(models.Model):
     patient = models.ForeignKey('Patient', on_delete=models.CASCADE, related_name="diets")
     
-    carbs = models.DecimalField(default=0, max_digits=5, decimal_places=2, null=True, blank=True, validators=[MinValueValidator(0), MaxValueValidator(100)])
-    fats = models.DecimalField(default=0, max_digits=5, decimal_places=2, null=True, blank=True, validators=[MinValueValidator(0), MaxValueValidator(100)])
-    dietary_fiber = models.DecimalField(default=0, max_digits=5, decimal_places=2, null=True, blank=True, validators=[MinValueValidator(0), MaxValueValidator(100)])
-    minerals = models.DecimalField(default=0, max_digits=5, decimal_places=2, null=True, blank=True, validators=[MinValueValidator(0), MaxValueValidator(100)])
-    proteins = models.DecimalField(default=0, max_digits=5, decimal_places=2, null=True, blank=True, validators=[MinValueValidator(0), MaxValueValidator(100)])
-    vitamins = models.DecimalField(default=0, max_digits=5, decimal_places=2, null=True, blank=True, validators=[MinValueValidator(0), MaxValueValidator(100)])
-    water = models.DecimalField(default=0, max_digits=5, decimal_places=2, null=True, blank=True, validators=[MinValueValidator(0), MaxValueValidator(100)])
+    carbs = models.DecimalField(verbose_name="Carbonhydrates", default=15, max_digits=5, decimal_places=2, null=True, blank=True, validators=[MinValueValidator(0), MaxValueValidator(100)])
+    fats = models.DecimalField(default=15, max_digits=5, decimal_places=2, null=True, blank=True, validators=[MinValueValidator(0), MaxValueValidator(100)])
+    dietary_fiber = models.DecimalField(verbose_name="Dietary Fibre", default=15, max_digits=5, decimal_places=2, null=True, blank=True, validators=[MinValueValidator(0), MaxValueValidator(100)])
+    minerals = models.DecimalField(default=15, max_digits=5, decimal_places=2, null=True, blank=True, validators=[MinValueValidator(0), MaxValueValidator(100)])
+    proteins = models.DecimalField(default=15, max_digits=5, decimal_places=2, null=True, blank=True, validators=[MinValueValidator(0), MaxValueValidator(100)])
+    vitamins = models.DecimalField(default=15, max_digits=5, decimal_places=2, null=True, blank=True, validators=[MinValueValidator(0), MaxValueValidator(100)])
+    water = models.DecimalField(default=10, max_digits=5, decimal_places=2, null=True, blank=True, validators=[MinValueValidator(0), MaxValueValidator(100)])
 
     frequency = models.PositiveIntegerField(default=1)
 
