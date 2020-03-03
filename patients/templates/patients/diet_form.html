@@ -1,0 +1,67 @@
+{% extends 'patients_base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load humanize %}
+
+{% block title %}<title>Edit {{ patient }}</title>{% endblock %}
+
+{% block content2 %}
+<div class="">
+    <h1 class="text-center">{{ patient }}</h1>
+    <hr>
+    <div class="content">
+        <form class="p-5 col-md-8 mx-auto" method="POST">
+            {% csrf_token %}
+            <!-- Carbonhydrates  -->
+            <div class="">
+                {% render_field form.carbs.label %}
+                {% render_field form.carbs id="carbs" class="form-control mb-4" %}
+            </div>
+
+            <!-- Fats -->
+            <div class="">
+                {% render_field form.fats.label %}
+                {% render_field form.fats id="fats" class="form-control mb-4" %}
+            </div>
+
+            <!-- Dietary Fats -->
+            <div class="">
+                {% render_field form.dietary_fiber.label %}
+                {% render_field form.dietary_fiber id="dietary_fiber" class="form-control mb-4" %}
+            </div>
+            
+            <!-- Minerals -->
+            <div class="">
+                {% render_field form.minerals.label %}
+                {% render_field form.minerals id="minerals" class="form-control mb-4" %}
+            </div>
+
+            <!-- Proteins -->
+            <div class="">
+                {% render_field form.proteins.label %}
+                {% render_field form.proteins id="proteins" class="form-control mb-4" %}
+            </div>
+
+            <!-- Vitamins -->
+            <div class="">
+                {% render_field form.vitamins.label %}
+                {% render_field form.vitamins id="vitamins" class="form-control mb-4" %}
+            </div>
+
+            <!-- Water -->
+            <div class="">
+                {% render_field form.water.label %}
+                {% render_field form.water id="water" class="form-control mb-4" %}
+            </div>
+            
+            <!-- Frequency -->
+            <div class="">
+                {% render_field form.frequency.label %}
+                {% render_field form.frequency id="frequency" class="form-control mb-4" %}
+            </div>
+
+            <button class="btn btn-elegant btn-block" type="submit">Save</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

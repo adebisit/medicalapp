@@ -1,0 +1,185 @@
+{% extends 'patients_base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load humanize %}
+
+{% block title %}<title>{{ patient }}</title>{% endblock %}
+
+{% block content2 %}
+<div class="">
+    <h1 class="text-center">{{ patient }}</h1>
+    <div class="content">
+        <div class="section">
+            <div class="section-header">
+                <h4>General Information</h4>
+                <div class="">
+                    <a href="#">Edit</a>
+                </div>
+            </div>
+            <hr>
+            <div class="row section-body justify-content-between">
+                <div class="col-md-3 prop">
+                    <p>DOB: </p>
+                    <p>{{ patient.dob }}</p>
+                </div>
+                <div class="col-md-3 prop">
+                    <p>Age: </p>
+                    <p>{{ patient.get_age }} years</p>
+                </div>
+                <div class="col-md-3 prop">
+                    <p>Blood Group: </p>
+                    <p>{{ patient.get_blood_group_display }}</p>
+                </div>
+                <div class="col-md-3 prop">
+                    <p>Genotype: </p>
+                    <p>{{ patient.get_genotype_display }}</p>
+                </div>
+            </div>
+            <div class="row section-body justify-content-between">
+                <div class="col-md-3 prop">
+                    <p>Height: </p>
+                    <p>{{ patient.height }}m</p>
+                </div>
+                <div class="col-md-3 prop">
+                    <p>Weight: </p>
+                    <p>{{ patient.weight }}kg</p>
+                </div>
+                <div class="col-md-3 prop">
+                    <p>BMI: </p>
+                    <p>{{ patient.get_bmi }}kg/m<sup>2</sup></p>
+                </div>
+                <div class="col-md-3 prop">
+                    <p>Weight Status: </p>
+                    <p>{{ patient.get_weight_status }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-header">
+                <h4>Diet</h4>
+                <div class="">
+                    {% if patient.diets.count < 4 %}
+                    <a href="#">Add</a>
+                    {% endif %}
+                </div>
+            </div>
+            <hr>
+            <div class="row section-body justify-content-between">
+                {% for diet in patient.diets.all %}
+                <div class="col-md-3 prop">
+                    <p class="font-weight-bold">{{ diet.frequency }}/week</p>
+                    <canvas class="diet-chart">
+                    </canvas>
+                    <div class="">
+                        <a href="#">Edit</a>  |  <a href="#">Delete</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <h4>History</h4>
+                <div class="">
+                    <a href="#">Add</a>
+                </div>
+            </div>
+            <hr>
+            <div class="row section-body justify-content-between">
+                {% for sickness in patient.sicknesses.all %}
+                <div class="col-md-5 mb-5">
+                    <div class="mb-2 prop">
+                        <p>Date</p>
+                        <p>{{ sickness.date_occured }} ({{ sickness.date_occured|timesince }} ago)</p>
+                    </div>
+                    <div class="mb-2 prop">
+                        <p>Diagnosis</p>
+                        <p>{{ sickness.diagnosis }}</p>
+                    </div>
+                    <div class="mb-2 prop">
+                        <p>Description</p>
+                        <p>{{ sickness.description }}</p>
+                    </div>
+                    <div class="prop">
+                        <p>Corrective Measures</p>
+                        <p>{{ sickness.correction }}</p>
+                    </div>
+                    <div class="mt-2">
+                        <button type="button" class="btn btn-mdb-color btn-sm ml-0">
+                            <a href="#" class="text-light">Edit</a>
+                        </button>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block inline-scripts %}
+<script>
+    var dietChartData = {{ diet_chart_data | safe }}
+    console.log(dietChartData)
+</script>
+
+<script>
+    color_selections = {
+        "Carbonhydrates": "brown",
+        "Fats": "grey",
+        "Dietary Fibre": "green",
+        "Minerals": "gold",
+        "Proteins": "ash",
+        "Vitamins": "yellow",
+        "Water": "blue"
+    }
+
+    var chartList = document.getElementsByClassName("diet-chart")
+    for (var i = 0; i < chartList.length; i++) {
+        chartData = dietChartData[i]
+        colors = []
+        labels = Object.keys(chartData)
+        for (var j = 0; j < labels.length; j++) {
+            colors.push(color_selections[labels[j]])
+        }
+
+        config = {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets:[{
+                    data: Object.values(chartData),
+                    backgroundColor: colors
+                }]
+            },
+            options: {
+                maintainAspectRatio: true,
+                layout: {
+                    padding: {
+                        left: 25,
+                        right: 25,
+                        top: 10,
+                        bottom: 10
+                    }
+                },
+                legend: {
+                    display: false,
+                    position: 'bottom',
+                    align: 'center',
+                    fullWidth: true,
+                    labels: {
+                        boxWidth: 20,
+                        fontSize: 11,
+                    }
+                },
+                pointLabels: {
+                    fontSize: 14
+                },
+            }
+        }
+        var chart = chartList[i].getContext('2d');
+        var pieChart = new Chart(chart, config)
+    }
+</script>
+{% endblock %}

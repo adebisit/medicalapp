@@ -1,0 +1,43 @@
+{% extends 'patients_base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load humanize %}
+
+{% block title %}<title>Edit {{ patient }}</title>{% endblock %}
+
+{% block content2 %}
+<div class="">
+    <h1 class="text-center">{{ patient }}</h1>
+    <hr>
+    <div class="content">
+        <form class="p-5 col-md-8 mx-auto" method="POST">
+            {% csrf_token %}
+            <!-- Diagnosis -->
+            <div class="">
+                {% render_field form.diagnosis.label %}
+                {% render_field form.diagnosis id="diagnosis" class="form-control mb-4" %}
+            </div>
+
+            <!-- Description -->
+            <div class="">
+                {% render_field form.description.label %}
+                {% render_field form.description id="description" class="form-control mb-4" %}
+            </div>
+
+            <!-- Correction -->
+            <div class="">
+                {% render_field form.correction.label %}
+                {% render_field form.correction id="correction" class="form-control mb-4" %}
+            </div>
+            
+            <!-- Date Occured -->
+            <div class="">
+                {% render_field form.date_occured.label %}
+                {% render_field form.date_occured id="date_occured" class="form-control mb-4" %}
+            </div>
+
+            <button class="btn btn-elegant btn-block" type="submit">Save</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
