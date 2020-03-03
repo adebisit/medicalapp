@@ -98,7 +98,7 @@ class Patient(models.Model):
         
 
 class History(models.Model):
-    patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name="sicknesses")
+    patient = models.ForeignKey(Patient, on_delete=models.CASCADE, related_name="histories")
 
     diagnosis = models.CharField(max_length=255)
     description = models.TextField()

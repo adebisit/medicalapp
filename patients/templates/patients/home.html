@@ -13,7 +13,7 @@
             <div class="section-header">
                 <h4>General Information</h4>
                 <div class="">
-                    <a href="#">Edit</a>
+                    <a href="{% url 'patients:patient_edit' %}">Edit</a>
                 </div>
             </div>
             <hr>
@@ -59,7 +59,7 @@
                 <h4>Diet</h4>
                 <div class="">
                     {% if patient.diets.count < 4 %}
-                    <a href="#">Add</a>
+                    <a href="{% url 'patients:diets_add' %}">Add</a>
                     {% endif %}
                 </div>
             </div>
@@ -71,7 +71,7 @@
                     <canvas class="diet-chart">
                     </canvas>
                     <div class="">
-                        <a href="#">Edit</a>  |  <a href="#">Delete</a>
+                        <a href="{% url 'patients:diet_edit' diet.id %}">Edit</a>  |  <a href="{% url 'patients:diet_delete' diet.id %}">Delete</a>
                     </div>
                 </div>
                 {% endfor %}
@@ -82,32 +82,32 @@
             <div class="section-header">
                 <h4>History</h4>
                 <div class="">
-                    <a href="#">Add</a>
+                    <a href="{% url 'patients:history_add' %}">Add</a>
                 </div>
             </div>
             <hr>
             <div class="row section-body justify-content-between">
-                {% for sickness in patient.sicknesses.all %}
+                {% for history in patient.histories.all %}
                 <div class="col-md-5 mb-5">
                     <div class="mb-2 prop">
                         <p>Date</p>
-                        <p>{{ sickness.date_occured }} ({{ sickness.date_occured|timesince }} ago)</p>
+                        <p>{{ history.date_occured }} ({{ sickness.date_occured|timesince }} ago)</p>
                     </div>
                     <div class="mb-2 prop">
                         <p>Diagnosis</p>
-                        <p>{{ sickness.diagnosis }}</p>
+                        <p>{{ history.diagnosis }}</p>
                     </div>
                     <div class="mb-2 prop">
                         <p>Description</p>
-                        <p>{{ sickness.description }}</p>
+                        <p>{{ history.description }}</p>
                     </div>
                     <div class="prop">
                         <p>Corrective Measures</p>
-                        <p>{{ sickness.correction }}</p>
+                        <p>{{ history.correction }}</p>
                     </div>
                     <div class="mt-2">
                         <button type="button" class="btn btn-mdb-color btn-sm ml-0">
-                            <a href="#" class="text-light">Edit</a>
+                            <a href="{% url 'patients:history_edit' history.id %}" class="text-light">Edit</a>
                         </button>
                     </div>
                 </div>

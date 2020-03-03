@@ -12,52 +12,84 @@
     <div class="content">
         <form class="p-5 col-md-8 mx-auto" method="POST">
             {% csrf_token %}
+            {% if form.non_field_errors %}
+            <div class="form-errors">
+                {% for error in form.non_field_errors %}
+                <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+
             <!-- Carbonhydrates  -->
-            <div class="">
+            <div class="mb-4">
                 {% render_field form.carbs.label %}
-                {% render_field form.carbs id="carbs" class="form-control mb-4" %}
+                {% render_field form.carbs id="carbs" class="form-control mb-2" %}
+                {% for error in form.carbs.errors %}
+                <p class="error-message">{{ error }}</p>
+                {% endfor %}
             </div>
 
             <!-- Fats -->
-            <div class="">
+            <div class="mb-4">
                 {% render_field form.fats.label %}
-                {% render_field form.fats id="fats" class="form-control mb-4" %}
+                {% render_field form.fats id="fats" class="form-control mb-2" %}
+                {% for error in form.fats.errors %}
+                <p class="error-message">{{ error }}</p>
+                {% endfor %}
             </div>
 
             <!-- Dietary Fats -->
-            <div class="">
+            <div class="mb-4">
                 {% render_field form.dietary_fiber.label %}
-                {% render_field form.dietary_fiber id="dietary_fiber" class="form-control mb-4" %}
+                {% render_field form.dietary_fiber id="dietary_fiber" class="form-control mb-2" %}
+                {% for error in form.dietary_fiber.errors %}
+                <p class="error-message">{{ error }}</p>
+                {% endfor %}
             </div>
             
             <!-- Minerals -->
-            <div class="">
+            <div class="mb-4">
                 {% render_field form.minerals.label %}
-                {% render_field form.minerals id="minerals" class="form-control mb-4" %}
+                {% render_field form.minerals id="minerals" class="form-control mb-2" %}
+                {% for error in form.minerals.errors %}
+                <p class="error-message">{{ error }}</p>
+                {% endfor %}
             </div>
 
             <!-- Proteins -->
-            <div class="">
+            <div class="mb-4">
                 {% render_field form.proteins.label %}
-                {% render_field form.proteins id="proteins" class="form-control mb-4" %}
+                {% render_field form.proteins id="proteins" class="form-control mb-2" %}
+                {% for error in form.proteins.errors %}
+                <p class="error-message">{{ error }}</p>
+                {% endfor %}
             </div>
 
             <!-- Vitamins -->
-            <div class="">
+            <div class="mb-4">
                 {% render_field form.vitamins.label %}
-                {% render_field form.vitamins id="vitamins" class="form-control mb-4" %}
+                {% render_field form.vitamins id="vitamins" class="form-control mb-2" %}
+                {% for error in form.vitamins.errors %}
+                <p class="error-message">{{ error }}</p>
+                {% endfor %}
             </div>
 
             <!-- Water -->
-            <div class="">
+            <div class="mb-4">
                 {% render_field form.water.label %}
-                {% render_field form.water id="water" class="form-control mb-4" %}
+                {% render_field form.water id="water" class="form-control mb-2" %}
+                {% for error in form.water.errors %}
+                <p class="error-message">{{ error }}</p>
+                {% endfor %}
             </div>
             
             <!-- Frequency -->
-            <div class="">
+            <div class="mb-4">
                 {% render_field form.frequency.label %}
-                {% render_field form.frequency id="frequency" class="form-control mb-4" %}
+                {% render_field form.frequency id="frequency" class="form-control mb-2" %}
+                {% for error in form.password.errors %}
+                <p class="error-message">{{ error }}</p>
+                {% endfor %}
             </div>
 
             <button class="btn btn-elegant btn-block" type="submit">Save</button>

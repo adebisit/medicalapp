@@ -7,10 +7,11 @@ from django.views.generic.edit import FormView
 from django.urls import reverse_lazy, reverse
 from django.views.generic.edit import UpdateView, CreateView, DeleteView
 from django.http import HttpResponseRedirect
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
-class Home(TemplateView):
+class Home(LoginRequiredMixin, TemplateView):
     template_name = 'patients/home.html'
 
     def get_context_data(self, *args, **kwargs):
@@ -39,13 +40,13 @@ class Home(TemplateView):
         return context
 
     
-class PatientEdit(UpdateView):
+class PatientEdit(LoginRequiredMixin, UpdateView):
     model = Patient
     fields = ["dob", "blood_group", "genotype", "height", "weight", "gender"]
     template_name = "patients/patient_form.html"
 
     def get_context_data(self, *args, **kwargs):
-        context = super(PatientEdit, self).get_context_data(*args, *kwargs)
+        context = super(PatientEdit, self).get_context_data(*args, **kwargs)
         context["patient"] = get_object_or_404(Patient, user=self.request.user)
         return context
 
@@ -53,14 +54,14 @@ class PatientEdit(UpdateView):
         return get_object_or_404(Patient, user=self.request.user)
 
 
-class HistoryAdd(CreateView):
+class HistoryAdd(LoginRequiredMixin, CreateView):
     model = History
     fields = ["diagnosis", "description", "correction", "date_occured"]
     template_name = "patients/history_form.html"
     success_url = reverse_lazy("patients:home")
 
     def get_context_data(self, *args, **kwargs):
-        context = super(HistoryAdd, self).get_context_data(*args, *kwargs)
+        context = super(HistoryAdd, self).get_context_data(*args, **kwargs)
         context["patient"] = get_object_or_404(Patient, user=self.request.user)
         return context
 
@@ -70,26 +71,26 @@ class HistoryAdd(CreateView):
         return super(HistoryAdd, self).form_valid(form)
 
 
-class HistoryEdit(UpdateView):
+class HistoryEdit(LoginRequiredMixin, UpdateView):
     model = History
     fields = ["diagnosis", "description", "correction", "date_occured"]
     template_name = "patients/history_form.html"
     success_url = reverse_lazy("patients:home")
 
     def get_context_data(self, *args, **kwargs):
-        context = super(HistoryEdit, self).get_context_data(*args, *kwargs)
+        context = super(HistoryEdit, self).get_context_data(*args, **kwargs)
         context["patient"] = get_object_or_404(Patient, user=self.request.user)
         return context
 
 
-class DietAdd(CreateView):
+class DietAdd(CreateView, LoginRequiredMixin):
     model = Diet
     fields = ["carbs", "fats", "dietary_fiber", "minerals", "proteins", "vitamins", "water"]
     template_name = "patients/diet_form.html"
     success_url = reverse_lazy("patients:home")
 
     def get_context_data(self, *args, **kwargs):
-        context = super(DietAdd, self).get_context_data(*args, *kwargs)
+        context = super(DietAdd, self).get_context_data(*args, **kwargs)
         context["patient"] = get_object_or_404(Patient, user=self.request.user)
         return context
 
@@ -98,19 +99,19 @@ class DietAdd(CreateView):
         form.instance.patient = patient
         return super(DietAdd, self).form_valid(form)
 
-class DietEdit(UpdateView):
+class DietEdit(LoginRequiredMixin, UpdateView):
     model = Diet
     fields = ["carbs", "fats", "dietary_fiber", "minerals", "proteins", "vitamins", "water"]
     template_name = "patients/diet_form.html"
     success_url = reverse_lazy("patients:home")
 
     def get_context_data(self, *args, **kwargs):
-        context = super(DietEdit, self).get_context_data(*args, *kwargs)
+        context = super(DietEdit, self).get_context_data(*args, **kwargs)
         context["patient"] = get_object_or_404(Patient, user=self.request.user)
         return context
 
 
-class DietDelete(DeleteView):
+class DietDelete(DeleteView, LoginRequiredMixin):
     model = Diet
     success_url = reverse_lazy("patients:home")
 

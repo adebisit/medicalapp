@@ -12,28 +12,50 @@
     <div class="content">
         <form class="p-5 col-md-8 mx-auto" method="POST">
             {% csrf_token %}
+            
+            {% if form.non_field_errors %}
+            <div class="form-errors">
+                {% for error in form.non_field_errors %}
+                <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+
             <!-- Diagnosis -->
-            <div class="">
+            <div class="mb-4">
                 {% render_field form.diagnosis.label %}
-                {% render_field form.diagnosis id="diagnosis" class="form-control mb-4" %}
+                {% render_field form.diagnosis id="diagnosis" class="form-control mb-2" %}
+                {% for error in form.diagnosis.errors %}
+                <p class="error-message">{{ error }}</p>
+                {% endfor %}
             </div>
 
             <!-- Description -->
-            <div class="">
+            <div class="mb-4">
                 {% render_field form.description.label %}
-                {% render_field form.description id="description" class="form-control mb-4" %}
+                {% for error in form.description.errors %}
+                <p class="error-message">{{ error }}</p>
+                {% endfor %}
+                {% render_field form.description id="description" class="form-control mb-2" %}
             </div>
 
             <!-- Correction -->
-            <div class="">
+            <div class="mb-4">
                 {% render_field form.correction.label %}
-                {% render_field form.correction id="correction" class="form-control mb-4" %}
+                {% for error in form.correction.errors %}
+                <p class="error-message">{{ error }}</p>
+                {% endfor %}
+                {% render_field form.correction id="correction" class="form-control mb-2" %}
             </div>
             
             <!-- Date Occured -->
-            <div class="">
+            <div class="mb-4">
                 {% render_field form.date_occured.label %}
-                {% render_field form.date_occured id="date_occured" class="form-control mb-4" %}
+                {% render_field form.date_occured id="date_occured" class="form-control mb-2" %}
+                {% for error in form.date_occured.errors %}
+                <p class="error-message">{{ error }}</p>
+                {% endfor %}
             </div>
 
             <button class="btn btn-elegant btn-block" type="submit">Save</button>

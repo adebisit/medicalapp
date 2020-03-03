@@ -12,44 +12,80 @@
     <div class="content">
         <form class="p-5 col-md-8 mx-auto" method="POST">
             {% csrf_token %}
+            
+            {% if form.non_field_errors %}
+            <div class="form-errors">
+                {% for error in form.non_field_errors %}
+                <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+            {% endif %}
+            
             <!-- Gender -->
-            <div class="">
+            <div class="mb-4">
                 {% render_field form.gender.label %}
-                {% render_field form.gender id="gender" class="form-control mb-4" %}
+                {% render_field form.gender id="gender" class="form-control mb-2" %}
+                {% for error in form.gender.errors %}
+                <p class="error-message">{{ error }}</p>
+                {% endfor %}
             </div>
 
             <!-- DOB -->
-            <div class="">
+            <div class="mb-4">
                 {% render_field form.dob.label %}
-                {% render_field form.dob id="dob" class="form-control mb-4" %}
+                {% render_field form.dob id="dob" class="form-control mb-2" data-toggle="datepicker" %}
+                {% for error in form.dob.errors %}
+                <p class="error-message">{{ error }}</p>
+                {% endfor %}
             </div>
 
             <!-- Blood Group -->
-            <div class="">
+            <div class="mb-4">
                 {% render_field form.blood_group.label %}
-                {% render_field form.blood_group id="blood_group" class="form-control mb-4" %}
+                {% render_field form.blood_group id="blood_group" class="form-control mb-2" %}
+                {% for error in form.blood_group.errors %}
+                <p class="error-message">{{ error }}</p>
+                {% endfor %}
             </div>
             
             <!-- Genotype -->
-            <div class="">
+            <div class="mb-4">
                 {% render_field form.genotype.label %}
-                {% render_field form.genotype id="genotype" class="form-control mb-4" %}
+                {% render_field form.genotype id="genotype" class="form-control mb-2" %}
+                {% for error in form.genotype.errors %}
+                <p class="error-message">{{ error }}</p>
+                {% endfor %}
             </div>
 
             <!-- Height -->
-            <div class="">
+            <div class="mb-4">
                 {% render_field form.height.label %}
-                {% render_field form.height id="height" class="form-control mb-4" %}
+                {% render_field form.height id="height" class="form-control mb-2" %}
+                {% for error in form.height.errors %}
+                <p class="error-message">{{ error }}</p>
+                {% endfor %}
             </div>
         
             <!-- Weight  -->
-            <div class="">
+            <div class="mb-4">
                 {% render_field form.weight.label %}
-                {% render_field form.weight id="weight" class="form-control mb-4" %}
+                {% render_field form.weight id="weight" class="form-control mb-2" %}
+                {% for error in form.weight.errors %}
+                <p class="error-message">{{ error }}</p>
+                {% endfor %}
             </div>
 
             <button class="btn btn-elegant btn-block" type="submit">Save</button>
         </form>
     </div>
 </div>
+{% endblock %}
+
+{% block inline-scripts %}
+<script>
+    $('[data-toggle="datepicker"]').datepicker({
+        format: "yyyy-mm-dd",
+        
+    });
+</script>
 {% endblock %}
