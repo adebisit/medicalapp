@@ -1,0 +1,71 @@
+a {
+    font-size: 14px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0rem 1.5rem;
+}
+
+.section-body {
+    padding: 1rem 1.5rem;    
+}
+/* 
+.status-icon {
+    border: 1px solid;
+    padding: 0.3rem 0.5rem;
+    border-radius: 50%;
+} */
+
+[status="verified"] .card-title {
+    background-color: #007E33;
+}
+
+[status="pending"] .card-title {
+    background-color: #FF8800;
+}
+
+[status="unverified"] .card-title {
+    background-color: #CC0000;
+}
+
+[status="verified"] .card-text {
+    background-color: #00C851;
+}
+
+[status="pending"] .card-text {
+    background-color: #ffbb33;
+}
+
+[status="unverified"] .card-text {
+    background-color: #ff4444;
+}
+
+.verified {
+    color: #007E33;
+}
+
+.pending {
+    color: #FF8800;
+}
+
+.unverified {
+    color: #CC0000;
+}
+
+.prop p:nth-child(1) {
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 0.25rem;
+}
+
+.file-icon, .file-icon img {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.file-icon i {
+    font-size: 2.5rem;
+}

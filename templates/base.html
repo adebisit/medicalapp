@@ -43,12 +43,15 @@
                                 <a class="nav-link" href="#">Home</a>
                             </li>
                             {% if user.is_authenticated %}
-                            <li class="nav-item {% block record_active %}{% endblock %}">
+                            <li class="nav-item {% block records_active %}{% endblock %}">
                                 <a class="nav-link" href="{% url 'patients:home' %}">My Record</a>
                             </li>
                             {% endif %}
                             <li class="nav-item {% block stats_active %}{% endblock %}">
-                                <a class="nav-link" href="#">Stats</a>
+                                <a class="nav-link" href="{% url 'stats:home' %}">Stats</a>
+                            </li>
+                            <li class="nav-item {% block expert_patients_active %}{% endblock %}">
+                                <a class="nav-link" href="{% url 'experts:patients' %}">Patients</a>
                             </li>
                             <li class="nav-item {% block about_active %}{% endblock %}">
                                 <a class="nav-link" href="#">About Us</a>
@@ -77,6 +80,9 @@
             </div>
         </main>
     </body>
+    {% block scripts %}
+    {% endblock %}
+    
     {% block inline-scripts %}
     {% endblock %}
 </html>

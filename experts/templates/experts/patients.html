@@ -1,0 +1,46 @@
+{% extends 'experts_base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load humanize %}
+
+{% block title %}<title>Patients</title>{% endblock %}
+
+{% block content2 %}
+<div class="">
+    <div class="mb-3 text-center">
+        <h1 class="font-weight-bold mr-2">Patients</h1>
+        <p>Medical Records</p>
+    </div>
+</div>
+<div class="">
+    <div class="table-responsive text-nowrap">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th class="text-center" scope="col">Age</th>
+                    <th class="text-center" scope="col">BMI</th>
+                    <th class="text-center" scope="col">Blood Group</th>
+                    <th class="text-center" scope="col">Genotype</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for patient in patients %}
+                <tr>
+                    <th scope="row">1</th>
+                    <th><a class="text-info font-weight-bold" href="{% url 'patients:patient-home' patient.pk %}">{{ patient }}</a></th>
+                    <td class="text-center">{{ patient.get_age }}</td>
+                    <td class="text-center">{{ patient.get_weight_status }}</td>
+                    <td class="text-center">{{ patient.get_blood_group_display }}</td>
+                    <td class="text-center">{{ patient.get_genotype_display }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+      </div>
+</div>
+{% endblock %}
+
+{% block records_active %}{% endblock %}
+{% block expert_patients_active %}active{% endblock %}

@@ -10,9 +10,7 @@ from .models import User
 
 
 def signup(request):
-    print("In sing up function")
     if request.method == "POST":
-        print("In Post function")
         form = SignupForm(request.POST)
 
         if form.is_valid():

@@ -1,0 +1,215 @@
+{% extends 'stats_base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% load humanize %}
+
+{% block title %}<title>{{ patient }}</title>{% endblock %}
+
+{% block content2 %}
+<div class="">
+    <h1 class="text-center font-weight-bold">Medistat Stats</h1>
+    <div class="content">
+        <div class="section">
+            <div class="section-header">
+                <h4>Age Distribution</h4>
+            </div>
+            <hr>
+            <div class="row section-body justify-content-between">
+                <canvas id="age-dist" class="col-md-8" height="250">
+                </canvas>
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-header">
+                <h4>Weight Status Distribution</h4>
+            </div>
+            <hr>
+            <div class="row section-body justify-content-between">
+                <canvas id="weight-dist" class="col-md-8" height="250">
+                </canvas>
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-header">
+                <h4>Diet Distribution</h4>
+            </div>
+            <hr>
+            <div class="row section-body justify-content-between">
+                <canvas id="diet-dist" class="col-md-8" height="250">
+                </canvas>
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-header">
+                <h4>Blood Group Distribution</h4>
+            </div>
+            <hr>
+            <div class="row section-body justify-content-between">
+                <canvas id="blood-dist" class="col-md-8" height="250">
+                </canvas>
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-header">
+                <h4>Blood Group Compatibility</h4>
+            </div>
+            <hr>
+            <div class="row section-body justify-content-between blood-dist">
+                <div class="text-center">
+                    <div class="chart" data-percent="73" data-scale-color="transparent">
+                        <span class="label">73%</span>
+                    </div>
+                    <p>A+</p>
+                </div>
+                <div class="text-center">
+                    <div class="chart" data-percent="0" data-scale-color="transparent">
+                        <span class="label">0%</span>
+                    </div>
+                    <p>B+</p>
+                </div>
+                <div class="text-center">
+                    <div class="chart" data-percent="17" data-scale-color="transparent">
+                        <span class="label">17%</span>
+                    </div>
+                    <p>B-</p>
+                </div>
+                <div class="text-center">
+                    <div class="chart" data-percent="25" data-scale-color="transparent">
+                        <span class="label">25%</span>
+                    </div>
+                    <p>O+</p>
+                </div>
+                <div class="text-center">
+                    <div class="chart" data-percent="65" data-scale-color="transparent">
+                        <span class="label">65%</span>
+                    </div>
+                    <p>O-</p>
+                </div>
+                <div class="text-center">
+                    <div class="chart" data-percent="10" data-scale-color="transparent">
+                        <span class="label">10%</span>
+                    </div>
+                    <p>AB+</p>
+                </div>
+                <div class="text-center">
+                    <div class="chart" data-percent="40" data-scale-color="transparent">
+                        <span class="label">40%</span>
+                    </div>
+                    <p>AB-</p>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-header">
+                <h4>Genotype Distribution</h4>
+            </div>
+            <hr>
+            <div class="row section-body justify-content-between">
+                <canvas id="genotype-dist" class="" height="250">
+                </canvas>
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-header">
+                <h4>Genotype Compatibility</h4>
+            </div>
+            <hr>
+            <div class="row section-body justify-content-between genotype-dist">
+                <div class="text-center">
+                    <div class="chart" data-percent="73" data-scale-color="transparent">
+                        <span class="label">73%</span>
+                    </div>
+                    <p>A+</p>
+                </div>
+                <div class="text-center">
+                    <div class="chart" data-percent="0" data-scale-color="transparent">
+                        <span class="label">0%</span>
+                    </div>
+                    <p>B+</p>
+                </div>
+                <div class="text-center">
+                    <div class="chart" data-percent="17" data-scale-color="transparent">
+                        <span class="label">17%</span>
+                    </div>
+                    <p>B-</p>
+                </div>
+                <div class="text-center">
+                    <div class="chart" data-percent="25" data-scale-color="transparent">
+                        <span class="label">25%</span>
+                    </div>
+                    <p>O+</p>
+                </div>
+                <div class="text-center">
+                    <div class="chart" data-percent="65" data-scale-color="transparent">
+                        <span class="label">65%</span>
+                    </div>
+                    <p>O-</p>
+                </div>
+                <div class="text-center">
+                    <div class="chart" data-percent="10" data-scale-color="transparent">
+                        <span class="label">10%</span>
+                    </div>
+                    <p>AB+</p>
+                </div>
+                <div class="text-center">
+                    <div class="chart" data-percent="40" data-scale-color="transparent">
+                        <span class="label">40%</span>
+                    </div>
+                    <p>AB-</p>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="section-header">
+                <h4>Pandemics/Diseases</h4>
+            </div>
+            <hr>
+            <div class="row section-body justify-content-between pandemics">
+                <div class="text-center">
+                    <div class="chart" data-percent="73" data-scale-color="transparent">
+                        <span class="label">73%</span>
+                    </div>
+                    <p>A+</p>
+                </div>
+                <div class="text-center">
+                    <div class="chart" data-percent="0" data-scale-color="transparent">
+                        <span class="label">0%</span>
+                    </div>
+                    <p>B+</p>
+                </div>
+                <div class="text-center">
+                    <div class="chart" data-percent="17" data-scale-color="transparent">
+                        <span class="label">17%</span>
+                    </div>
+                    <p>B-</p>
+                </div>
+                <div class="text-center">
+                    <div class="chart" data-percent="25" data-scale-color="transparent">
+                        <span class="label">25%</span>
+                    </div>
+                    <p>O+</p>
+                </div>
+                <div class="text-center">
+                    <div class="chart" data-percent="65" data-scale-color="transparent">
+                        <span class="label">65%</span>
+                    </div>
+                    <p>O-</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block inline-scripts %}
+<script>
+    $(function () {
+        $(".chart").easyPieChart({
+            // size: 200,
+            // scaleColor: "transparent",
+            // trackColor: "transparent",
+            // barColor: "red"
+        })
+    })
+</script>
+{% endblock %}

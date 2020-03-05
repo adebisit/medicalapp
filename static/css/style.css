@@ -8,6 +8,10 @@ p, hr {
     padding: 0;
 }
 
+a {
+    font-size: 13px;
+}
+
 .form-errors p, .error-message {
     font-size: 12px;
     color: red;

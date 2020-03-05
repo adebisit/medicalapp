@@ -2,10 +2,6 @@
     margin: 1.5rem 0;
 }
 
-a {
-    font-size: 13px;
-}
-
 .section-header {
     display: flex;
     justify-content: space-between;

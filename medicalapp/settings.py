@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'experts.apps.ExpertsConfig',
     'patients.apps.PatientsConfig',
     'accounts.apps.AccountsConfig',
+    'stats.apps.StatsConfig',
     'widget_tweaks',
     'django.contrib.humanize'
 ]
@@ -151,6 +152,9 @@ LOGOUT_REDIRECT_URL = "patients:home"
 # DATABASES['default'].update(db_from_env)
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 

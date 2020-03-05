@@ -16,7 +16,10 @@ class Home(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(Home, self).get_context_data(*args, **kwargs)
-        patient = get_object_or_404(Patient, user=self.request.user)
+        if kwargs.get("pk"):
+            patient = get_object_or_404(Patient, pk=kwargs.get("pk"))
+        else:
+            patient = get_object_or_404(Patient, user=self.request.user)
         context["patient"] = patient
         chart_data = []
         for diet in patient.diets.all():
