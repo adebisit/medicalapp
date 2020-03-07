@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block extrahead %}
+<link rel="stylesheet" type="text/css" href="{% static 'home/css/style.css' %}">
+{% endblock %}
+
+{% block title %}
+<title>Medi-Stat</title>
+{% endblock %}
+
+{% block extraheader %}
+<div class="view intro-2">
+    <div class="full-bg-img">
+      <div class="mask rgba-black-strong flex-center">
+        <div class="container">
+          <div class="white-text text-center wow fadeInUp">
+            <h2 style="color: #ffaa1a; font-size: 2.5rem;">MEDI-STAT</h2>
+            <h5>Medicine with Data Analysis</h5>
+            <br>
+            <p>There is so much potentials with the application for both Experts and Patients</p>
+            <button class="btn btn-amber btn-lg">
+                <a class="text-white" href="{% url 'accounts:signup' %}">Get Started Now</a>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block content %}
+<div class="col-md-12 text-center page-section">
+    <p class="title">What we do?</p>
+    <div class="col-md-5 sep"><hr></div>
+    <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sit amet lectus ante. Cras mauris lectus, sagittis et commodo vel, aliquam at turpis.
+        Etiam rutrum nec dolor in euismod. Pellentesque facilisis scelerisque congue. Duis interdum et tortor sit amet semper.
+        Cras lacinia pellentesque turpis, vel pulvinar eros varius vitae. Donec eu orci a quam aliquam lacinia.
+    </p>
+</div>
+<div class="row col-md-12 justify-content-between page-section">
+    <div class="text-center col-md-6 number-display mb-3">
+        <p class="value text-success count" data-val="12343">12343</p>
+        <p class="key">Users</p>
+    </div>
+    <div class="text-center col-md-6 number-display">
+        <p class="value text-success count">400</p>
+        <p class="key">Experts</p>
+    </div>
+</div>
+<div class="page-section col-md-12">
+    <p class="title text-center">What we offer?</p>
+    <div class="col-md-5 sep"><hr></div>
+    <div class="row justify-content-between sub-page">
+        <div class="col-md-4 text-center mb-3">
+            <div class="title">
+                <i class="fas fa-stethoscope mb-2 icon"></i>
+                <p>Medical Consultantcy</p>
+            </div>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sit amet lectus ante. Cras mauris lectus, sagittis et commodo vel, aliquam at turpis.
+            </p>
+        </div>
+        <div class="col-md-4 text-center mb-3">
+            <div class="title">
+                <i class="far fa-chart-bar mb-2 icon"></i>
+                <p>Data Analysis</p>
+            </div>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sit amet lectus ante. Cras mauris lectus, sagittis et commodo vel, aliquam at turpis.
+            </p>
+        </div>
+        <div class="col-md-4 text-center mb-3">
+            <div class="title">
+                <i class="fas fa-briefcase-medical mb-2 icon"></i>
+                <p>Preventive Measures</p>
+            </div>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sit amet lectus ante. Cras mauris lectus, sagittis et commodo vel, aliquam at turpis.
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="page-section row justify-content-center mb-5">
+    <button class="btn btn-amber btn-lg col-md-4">
+        <a class="text-white" href="{% url 'accounts:signup' %}">Sign Up</a>
+    </button>
+</div>
+
+<div class="mx-auto col-md-6 mb-4">
+    <!-- Default form contact -->
+    <form class="text-center border border-light p-5" action="#!">
+        
+        <p class="h4 mb-4">Ask us a question</p>
+        <!-- Name -->
+        <input type="text" class="form-control mb-4" placeholder="Name">
+        
+        <!-- Email -->
+        <input type="email" class="form-control mb-4" placeholder="E-mail">
+
+        <!-- Message -->
+        <div class="form-group">
+            <textarea class="form-control rounded-0" rows="3" placeholder="Question"></textarea>
+        </div>
+
+        <!-- Copy -->
+        <div class="custom-control custom-checkbox mb-4">
+            <input type="checkbox" class="custom-control-input" id="defaultContactFormCopy">
+            <label class="custom-control-label" for="defaultContactFormCopy">Send me a copy of this Question</label>
+        </div>
+
+        <!-- Send button -->
+        <button class="btn btn-elegant btn-block" type="submit">Send</button>
+</form>
+<!-- Default form contact -->
+</div>
+{% endblock %}
+{% block home_active %}active{% endblock %}
+
+{% block inline-scripts %}
+<script>
+    $('.count').each(function () {
+        var $this = $(this);
+        jQuery({ Counter: 0 }).animate({ Counter: $this.text() }, {
+            duration: 1500,
+            easing: 'swing',
+            step: function () {
+                $this.text(Math.ceil(this.Counter));
+            }
+        });
+    });
+</script>
+{% endblock %}

@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'experts.apps.ExpertsConfig',
     'patients.apps.PatientsConfig',
     'stats.apps.StatsConfig',
+    'home.apps.HomeConfig',
+    'about.apps.AboutConfig',
     'widget_tweaks',
     'django.contrib.humanize',
     'rest_framework'
@@ -147,7 +149,7 @@ EMAIL_HOST_PASSWORD = os.environ["EMAIL_HOST_PASSWORD"]
 EMAIL_USE_TLS = True
 
 LOGIN_REDIRECT_URL = "accounts:login_success"
-# LOGOUT_REDIRECT_URL = "accounts:login_success"
+LOGOUT_REDIRECT_URL = "home:home"
 # import dj_database_url
 # db_from_env = dj_database_url.config(conn_max_age=500)
 # DATABASES['default'].update(db_from_env)

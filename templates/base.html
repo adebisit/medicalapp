@@ -4,6 +4,8 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <!-- <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}"/> -->
+        <link rel="shortcut icon" type="image/icon" href="{% static 'img/favicon.ico' %}"/>
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
         <!-- Google Fonts -->
@@ -34,14 +36,19 @@
         <header>
             <nav class="navbar navbar-expand-lg navbar-dark black">
                 <div class="container">
-                    <a class="navbar-brand mr-5" href="#"><strong>MediStat</strong></a>
+                    <a class="navbar-brand mr-5" href="{% url 'home:home' %}">
+                        <div class="d-flex align-items-center">
+                            <img class="im-fluid mr-3" width="35" src="{% static 'img/logo-3.svg' %}" alt="logo">
+                            <strong id="site-name">MediStat</strong>
+                        </div>
+                    </a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item {% block home_active %}{% endblock %}">
-                                <a class="nav-link" href="#">Home</a>
+                                <a class="nav-link" href="{% url 'home:home' %}">Home</a>
                             </li>
                             {% if user.is_authenticated %}
                             <li class="nav-item {% block records_active %}{% endblock %}">
@@ -67,7 +74,10 @@
                         <ul class="navbar-nav">
                             {% if user.is_authenticated %}
                             <li class="nav-item d-flex">
-                                <a class="nav-link" href="#">{{ user.get_short_name }}</a>
+                                <a class="nav-link" href="#">
+                                    <i class="fas fa-user"></i>
+                                    {{ user.get_short_name }}
+                                </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{% url 'accounts:logout' %}">Logout</a>
@@ -83,12 +93,13 @@
                                 <a class="nav-link" href="{% url 'accounts:login' %}">Log In</a>
                             </li>
                             {% endblock %}
-                            </li>
                             {% endif %}
                         </ul>
                     </div>
                 </div>
             </nav>
+            {% block extraheader %}
+            {% endblock %}
         </header>
         <main class="my-5">
             <div class="container">
@@ -100,6 +111,11 @@
                 </div>
             </div>
         </main>
+        <footer class="page-footer font-small unique-color-dark fixed-bottom">
+            <div class="footer-copyright text-center py-3">© 2020 Copyright:
+                <a href="https://mdbootstrap.com/">Taiwo Adebisi</a>
+            </div>
+        </footer>
     </body>
     {% block scripts %}
     {% endblock %}

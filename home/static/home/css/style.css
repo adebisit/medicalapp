@@ -1,0 +1,63 @@
+html,
+body,
+header,
+.view {
+  height: 100%;
+}
+
+a {
+    font-size: 15px !important;
+}
+
+.view {
+    /* background: url("https://mdbootstrap.com/img/Photos/Others/img (51).jpg") no-repeat center center; */
+    background: url("../../img/medical-wallpaper.jpg") no-repeat center center;
+    background-size: cover;
+}
+
+@media (min-width: 768px) {
+    .view {
+        overflow: visible;
+        margin-top: -56px;
+    }
+}
+
+.navbar {
+    z-index: 1;
+}
+
+
+.page-section {
+    margin: 1.5rem auto;
+    margin-bottom: 3rem;
+}
+
+.page-section .title {
+    font-size: 1.5rem;
+    color: grey;
+    /* font-weight: bold; */
+}
+
+.page-section .sub-page .title {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #ffa000;
+}
+
+.page-section .sep {
+    margin: auto;
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.number-display .value {
+    font-size: 3rem;
+}
+
+.number-display .key {
+    font-size: 1rem;
+}
+
+.icon {
+    font-size: 2rem;
+}
