@@ -21,7 +21,7 @@ class Patient(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     patient_id = models.UUIDField(default=uuid4, editable=False)
     
-    dob = models.DateField(verbose_name="Date of Birth", validators=[no_future, ])
+    dob = models.DateField(verbose_name="Date of Birth", null=True, blank=True,  validators=[no_future,])
 
     BLOOD_GROUP_CHOICES = (
         ('a+', "A+"),
@@ -61,8 +61,10 @@ class Patient(models.Model):
         return self.user.first_name + " " + self.user.last_name
     
     def get_age(self):
-        today = date.today()
-        return today.year - self.dob.year - ((today.month, today.day) < (self.dob.month, self.dob.day))
+        if self.dob:
+            today = date.today()
+            return today.year - self.dob.year - ((today.month, today.day) < (self.dob.month, self.dob.day))
+        return None
 
     def get_bmi(self):
         if self.height is None or self.weight is None:
@@ -91,6 +93,9 @@ class Patient(models.Model):
 
     def get_absolute_url(self):
         return reverse("patients:home")
+
+    def get_patient_view_url(self):
+        return reverse("patients:patient-home", args=[self.pk, ])
 
 
     # frequency of excercising

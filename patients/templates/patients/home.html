@@ -2,6 +2,7 @@
 {% load static %}
 {% load widget_tweaks %}
 {% load humanize %}
+{% load accounts_extras %}
 
 {% block title %}<title>{{ patient }}</title>{% endblock %}
 
@@ -12,81 +13,94 @@
         <div class="section">
             <div class="section-header">
                 <h4>General Information</h4>
+                {% if not user|has_group:"Expert" %}
                 <div class="">
                     <a href="{% url 'patients:patient_edit' %}">Edit</a>
                 </div>
+                {% endif %}
             </div>
             <hr>
             <div class="row section-body justify-content-between">
                 <div class="col-md-3 prop mb-2">
                     <p>DOB: </p>
-                    <p>{{ patient.dob }}</p>
+                    <p>{{ patient.dob|default_if_none:"-" }}</p>
                 </div>
                 <div class="col-md-3 prop mb-2">
                     <p>Age: </p>
-                    <p>{{ patient.get_age }} years</p>
+                    <p>{{ patient.get_age|default_if_none:"-" }} years</p>
                 </div>
                 <div class="col-md-3 prop mb-2">
                     <p>Blood Group: </p>
-                    <p>{{ patient.get_blood_group_display }}</p>
+                    <p>{{ patient.get_blood_group_display|default_if_none:"-" }}</p>
                 </div>
                 <div class="col-md-3 prop mb-2">
                     <p>Genotype: </p>
-                    <p>{{ patient.get_genotype_display }}</p>
+                    <p>{{ patient.get_genotype_display|default_if_none:"-" }}</p>
                 </div>
             </div>
             <div class="row section-body justify-content-between">
                 <div class="col-md-3 prop mb-2">
                     <p>Height: </p>
-                    <p>{{ patient.height }}m</p>
+                    <p>{{ patient.height|default_if_none:"-" }} m</p>
                 </div>
                 <div class="col-md-3 prop mb-2">
                     <p>Weight: </p>
-                    <p>{{ patient.weight }}kg</p>
+                    <p>{{ patient.weight|default_if_none:"-" }} kg</p>
                 </div>
                 <div class="col-md-3 prop mb-2">
                     <p>BMI: </p>
-                    <p>{{ patient.get_bmi }}kg/m<sup>2</sup></p>
+                    <p>{{ patient.get_bmi|default_if_none:"-" }} kg/m<sup>2</sup></p>
                 </div>
                 <div class="col-md-3 prop mb-2">
                     <p>Weight Status: </p>
-                    <p>{{ patient.get_weight_status }}</p>
+                    <p>{{ patient.get_weight_status|default_if_none:"-" }}</p>
                 </div>
             </div>
         </div>
         <div class="section">
             <div class="section-header">
                 <h4>Diet</h4>
+                {% if not user|has_group:"Expert" %}
                 <div class="">
                     {% if patient.diets.count < 4 %}
                     <a href="{% url 'patients:diets_add' %}">Add</a>
                     {% endif %}
                 </div>
+                {% endif %}
             </div>
             <hr>
             <div class="row section-body justify-content-between">
+                {% if patient.diets.all %}
                 {% for diet in patient.diets.all %}
                 <div class="col-md-3 prop mb-2 list-display">
                     <p class="font-weight-bold">{{ diet.frequency }}/week</p>
                     <canvas class="diet-chart" height="250">
                     </canvas>
+                    {% if not user|has_group:"Expert" %}
                     <div class="">
                         <a href="{% url 'patients:diet_edit' diet.id %}">Edit</a>  |  <a href="{% url 'patients:diet_delete' diet.id %}">Delete</a>
                     </div>
+                    {% endif %}
                 </div>
                 {% endfor %}
+                {% else %}
+                <p class="col-md-12 mb-2 mt-3 text-center">No data to show</p>
+                {% endif %}
             </div>
         </div>
 
         <div class="section">
             <div class="section-header">
                 <h4>History</h4>
+                {% if not user|has_group:"Expert" %}
                 <div class="">
                     <a href="{% url 'patients:history_add' %}">Add</a>
                 </div>
+                {% endif %}
             </div>
             <hr>
             <div class="row section-body justify-content-between">
+                {% if patient.histories.all %}
                 {% for history in patient.histories.all %}
                 <div class="col-md-5 mb-5">
                     <div class="mb-2 prop">
@@ -105,13 +119,19 @@
                         <p>Corrective Measures</p>
                         <p>{{ history.correction }}</p>
                     </div>
+                    {% if not user|has_group:"Expert" %}
                     <div class="mt-2">
                         <button type="button" class="btn btn-mdb-color btn-sm ml-0">
                             <a href="{% url 'patients:history_edit' history.id %}" class="text-light">Edit</a>
                         </button>
                     </div>
+                    {% endif %}
                 </div>
                 {% endfor %}
+                {% else %}
+                <p class="col-md-12 mb-2 mt-3 text-center">No data to show</p>
+                {% endif %}
+            </div>
             </div>
         </div>
     </div>

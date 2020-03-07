@@ -9,7 +9,7 @@ p, hr {
 }
 
 a {
-    font-size: 13px;
+    font-size: 13px !important;
 }
 
 .form-errors p, .error-message {

@@ -31,6 +31,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'accounts.apps.AccountsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -39,10 +40,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'experts.apps.ExpertsConfig',
     'patients.apps.PatientsConfig',
-    'accounts.apps.AccountsConfig',
     'stats.apps.StatsConfig',
     'widget_tweaks',
-    'django.contrib.humanize'
+    'django.contrib.humanize',
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
@@ -145,8 +146,8 @@ EMAIL_HOST_USER = os.environ["EMAIL_HOST_USER"]
 EMAIL_HOST_PASSWORD = os.environ["EMAIL_HOST_PASSWORD"]
 EMAIL_USE_TLS = True
 
-LOGIN_REDIRECT_URL = 'patients:home'
-LOGOUT_REDIRECT_URL = "patients:home"
+LOGIN_REDIRECT_URL = "accounts:login_success"
+# LOGOUT_REDIRECT_URL = "accounts:login_success"
 # import dj_database_url
 # db_from_env = dj_database_url.config(conn_max_age=500)
 # DATABASES['default'].update(db_from_env)

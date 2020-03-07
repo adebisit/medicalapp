@@ -1,7 +1,3 @@
-a {
-    font-size: 14px;
-}
-
 .section-header {
     display: flex;
     justify-content: space-between;
@@ -11,12 +7,6 @@ a {
 .section-body {
     padding: 1rem 1.5rem;    
 }
-/* 
-.status-icon {
-    border: 1px solid;
-    padding: 0.3rem 0.5rem;
-    border-radius: 50%;
-} */
 
 [status="verified"] .card-title {
     background-color: #007E33;
@@ -68,4 +58,79 @@ a {
 
 .file-icon i {
     font-size: 2.5rem;
+}
+
+div.filter-group {
+    margin: 0.5rem;
+    font-size: 13px;
+    min-width: 200px;
+}
+
+div.filter-group label.title {
+    font-weight: bold;
+}
+
+#filter-dropdown {
+    overflow: hidden;
+    display: block;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+
+#filter-dropdown.hide {
+    height: 0;
+    transition: height 0.15s ease-out;
+}
+
+#filter-dropdown.show {
+    height: 300px;
+    border-color: rgba(0,0,0,.15);
+    transition: height 0.25s ease-in;
+}
+
+#table-message-wrapper {
+    display: none;
+}
+/* 
+#errorDisplay {
+    display: none;
+} */
+
+#loadingDisplay, #errorDisplay {
+    width: calc(100% + 0.5rem);
+    height: 100%;
+    position: absolute;
+    background-color: white;
+    z-index: 10;
+    text-align: center;
+    display: none;
+    margin-left: -1.5rem;
+}
+
+.loading-icon.lds-ring {
+    margin: 5%;
+}
+
+#errorDisplay .message-wrapper { 
+    margin: 8%;
+    text-align: center;
+}
+
+#errorDisplay .message {
+    font-size: 16px;
+    color: #212529;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#errorDisplay .message .icon {
+    font-size: 28px;
+} 
+
+.loading-icon.lds-ring div {
+    width: 64px;
+    height: 64px;
+    border: 8px solid #212529;
+    border-color: #212529 transparent transparent transparent;
 }

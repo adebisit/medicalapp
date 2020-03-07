@@ -7,29 +7,221 @@
 
 {% block content2 %}
 <div class="">
-    <div class="mb-3 text-center">
-        <h1 class="font-weight-bold mr-2">Patients</h1>
-        <p>Medical Records</p>
+    <div class="mb-3">
+        <h1 class="font-weight-bold mr-2 text-center">Patients</h1>
+        <p class="text-center">Medical Records</p>
+        <div class="">
+            <div class="text-center">
+                <a id="open-filter" class="text-primary dropdown-toggle">Filter Options</a>
+            </div>
+            <div id="filter-dropdown" class="m-2 hide">
+                <form id="filter-form" class="mx-2">
+                    <div class="row d-flex justify-content-between">
+                        <div class="filter-group col-md-2" filter-role="blood-group">
+                            <label class="title">Blood Group Filter</label>
+                            <div class="">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="a+" checked>
+                                    <label class="custom-control-label" for="a+">A+</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="a-" checked>
+                                    <label class="custom-control-label" for="a-">A-</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="b+" checked>
+                                    <label class="custom-control-label" for="b+">B+</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="b-" checked>
+                                    <label class="custom-control-label" for="b-">B-</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="o+" checked>
+                                    <label class="custom-control-label" for="o+">O+</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="o-" checked>
+                                    <label class="custom-control-label" for="o-">O-</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="ab+" checked>
+                                    <label class="custom-control-label" for="ab+">AB+</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="ab-" checked>
+                                    <label class="custom-control-label" for="ab-">AB-</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="filter-group col-md-2" filter-role="age-group">
+                            <label class="title">Age Group Filter</label>
+                            <div class="">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="babies" checked>
+                                    <label class="custom-control-label" for="babies">Babies (0 - 4 years)</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="children" checked>
+                                    <label class="custom-control-label" for="children">Children (4 - 12 years)</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="teenagers" checked>
+                                    <label class="custom-control-label" for="teenagers">Teenagers (13 - 19 years)</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="youths" checked>
+                                    <label class="custom-control-label" for="youths">Youths (20 - 35 years)</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="adults" checked>
+                                    <label class="custom-control-label" for="adults">Adults (36 - 50 years)</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="elders" checked>
+                                    <label class="custom-control-label" for="elders">Elders (51 - 70 years)</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="old" checked>
+                                    <label class="custom-control-label" for="old">Old (above 70 years)</label>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="filter-group col-md-2" filter-role="genotype">
+                            <label class="title">GenoType Filter</label>
+                            <div class="">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="aa" checked>
+                                    <label class="custom-control-label" for="aa">AA</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="ao" checked>
+                                    <label class="custom-control-label" for="ao">AO</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="bb" checked>
+                                    <label class="custom-control-label" for="bb">BB</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="bo" checked>
+                                    <label class="custom-control-label" for="bo">BO</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="ab" checked>
+                                    <label class="custom-control-label" for="ab">AB</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="oo" checked>
+                                    <label class="custom-control-label" for="oo">OO</label>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="filter-group col-md-2" filter-role="weight-status">
+                            <label class="title">Weight Status</label>
+                            <div class="">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="under-weight" checked>
+                                    <label class="custom-control-label" for="under-weight">Under weight</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="normal-weight" checked>
+                                    <label class="custom-control-label" for="normal-weight">Normal Weight</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="overweight" checked>
+                                    <label class="custom-control-label" for="overweight">Overweight</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="obesity-class-1" checked>
+                                    <label class="custom-control-label" for="obesity-class-1">Obesity Class 1</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="obesity-class-2" checked>
+                                    <label class="custom-control-label" for="obesity-class-2">Obesity Class 2</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="extreme-obesity-class-3" checked>
+                                    <label class="custom-control-label" for="extreme-obesity-class-3">Extreme Obesity Class 3</label>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="filter-group col-md-2" filter-role="medical-history">
+                            <label class="title">Medical History</label>
+                            <div class="">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="malaria" checked>
+                                    <label class="custom-control-label" for="malaria">Malaria</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="typhoid" checked>
+                                    <label class="custom-control-label" for="typhoid">Typhoid</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="cholera" checked>
+                                    <label class="custom-control-label" for="cholera">Cholera</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="high-blood-pressure" checked>
+                                    <label class="custom-control-label" for="high-blood-pressure">High Blood Pressure</label>
+                                </div>
+                                <div class="mt-2">
+                                    <input type="text" class="form-control form-control-sm" placeholder="Type a keyword to search">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="justify-content-center d-flex">
+                        <button id="apply-filter" type="" class="btn btn-primary btn-sm">Apply Filter</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
+
 <div class="">
     <div class="table-responsive text-nowrap">
-        <table class="table">
+        <table id="patients" class="table">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
                     <th scope="col">Name</th>
                     <th class="text-center" scope="col">Age</th>
-                    <th class="text-center" scope="col">BMI</th>
+                    <th class="text-center" scope="col">Weight Status</th>
                     <th class="text-center" scope="col">Blood Group</th>
                     <th class="text-center" scope="col">Genotype</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="table-message-wrapper">
+                <tr>
+                    <td>
+                        <div id="errorDisplay">
+                            <div class="message-wrapper">
+                                <div class="message">
+                                    <i class="fas fa-exclamation-circle mr-2 icon"></i>
+                                    <p>Something went wrong</p>
+                                </div>
+                                <a class="text-info" href="">Refresh Page</a>
+                            </div>
+                        </div>
+                        <div  id="loadingDisplay">
+                            <div class="lds-ring loading-icon">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody class="tbody">
                 {% for patient in patients %}
                 <tr>
-                    <th scope="row">1</th>
-                    <th><a class="text-info font-weight-bold" href="{% url 'patients:patient-home' patient.pk %}">{{ patient }}</a></th>
+                    <th><a class="text-info font-weight-bold" href="{% url 'patients:patient-home' patient.pk %}" target="_blank">{{ patient }}</a></th>
                     <td class="text-center">{{ patient.get_age }}</td>
                     <td class="text-center">{{ patient.get_weight_status }}</td>
                     <td class="text-center">{{ patient.get_blood_group_display }}</td>
@@ -44,3 +236,80 @@
 
 {% block records_active %}{% endblock %}
 {% block expert_patients_active %}active{% endblock %}
+
+{% block inline-scripts %}
+<script>
+    tableMessageWrapper = $("#table-message-wrapper")
+    errorDisplay = $("#errorDisplay")
+    loadingDisplay = $("#loadingDisplay")
+
+    $("#apply-filter").click(e => {
+        e.preventDefault()
+        tableMessageWrapper.css("display", "block")
+        errorDisplay.css("display", "none")
+        loadingDisplay.css("display", "block")
+
+        formData = {}
+        $("div[filter-role]").each((index, e) => {
+            fieldEle = $(e)
+            field = fieldEle.attr("filter-role")
+            formData[field] = []
+            fieldEle.find('input[type=checkbox]:checkbox:checked').each( (index, e) => {
+                formData[field].push($(e).attr("id"))
+            })
+            fieldEle.find('input[type=text]').each( (index, e) => {
+                if ($(e).val() != "") {
+                    formData[field].push($(e).val())
+                }
+            })
+        })
+        console.log(formData)
+
+        $.ajax({
+            url: "{% url 'experts:patients_filtered' %}",
+            type: "GET",
+            data: formData
+        })
+        .done(function (data) {
+            console.log(data)
+            tableMessageWrapper.css("display", "none")
+            loadingDisplay.css("display", "none")
+            populateTable(data)
+        })
+        .fail(function (jqXHR, textStatus, errorThrown) {
+            console.log("There was an Error")
+            errorDisplay.css("display", "block")
+            loadingDisplay.css("display", "none")
+        })
+    })
+
+    function populateTable(data) {
+        $("#patients tbody.tbody").empty();
+        patients = data.patients
+        for (var i = 0; i < patients.length; i++) {
+            patient = patients[i]
+            name = "<td><a class='text-info font-weight-bold' href='" + patient.patient_url + "' target='_blank'>" + patient.full_name + "</a></td>"
+            age = '<td class="text-center">' + patient.age + '</td>'
+            weight_status = '<td class="text-center">' + patient.weight_status + '</td>'
+            blood_group = '<td class="text-center">' + patient.blood_group + '</td>'
+            genotype = '<td class="text-center">' + patient.genotype + '</td>'
+
+            $('#patients tbody:last-child').append('<tr>' + name + age + weight_status + blood_group + genotype + '</tr>');
+        }
+    }
+</script>
+
+<script>
+    $("#open-filter").click(e => {
+        filterDropDown = $("#filter-dropdown")
+        if (filterDropDown.hasClass("show")) {
+            $("#filter-dropdown").removeClass("show")
+            $("#filter-dropdown").addClass("hide")
+        }
+        else if (filterDropDown.hasClass("hide")) {
+            $("#filter-dropdown").removeClass("hide")
+            $("#filter-dropdown").addClass("show")
+        }
+    })
+</script>
+{% endblock %}

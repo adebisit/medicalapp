@@ -2,10 +2,11 @@ from django.shortcuts import render
 from django.views.generic import TemplateView
 from patients.models import Patient, History, Diet
 from django.db.models import F
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
 
-class Home(TemplateView):
+class Home(LoginRequiredMixin, TemplateView):
     template_name = "stats/home.html"
 
     def get_context_data(self, *args, **kwargs):
