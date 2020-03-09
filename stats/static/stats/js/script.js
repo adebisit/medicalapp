@@ -77,7 +77,7 @@ function getPieChartConfig(chart_type, labels, data) {
     return config
 }
 
-
+console.log(age_dict)
 config = generateBarChartConfig("horizontalBar", Object.keys(age_dict), Object.values(age_dict), "green")
 canvas = document.getElementById("age-dist")
 var chart = canvas.getContext('2d');

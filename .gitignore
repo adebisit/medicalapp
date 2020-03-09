@@ -2,3 +2,5 @@
 env/
 __pycache__/
 migrations/
+tasks.py
+data_input.txt

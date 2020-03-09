@@ -68,7 +68,7 @@ def get_context_data():
     age_groups = patients.values("age_group").annotate(Count('age_group'))
     age_dict = {
         "0 - 4 yrs": 0,
-        "4 -12 yrs": 0,
+        "4 - 12 yrs": 0,
         "13 - 19 yrs": 0,
         "20 - 35 yrs": 0,
         "36 - 50 yrs": 0,
@@ -77,7 +77,7 @@ def get_context_data():
     }
     for age_group in age_groups:
         age_dict[age_group["age_group"]] = age_group["age_group__count"]
-
+        
     context_data["age_dict"] = age_dict
 
     weight_status_groups = patients.values("weight_status").annotate(Count('weight_status'))
