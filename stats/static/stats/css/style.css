@@ -8,3 +8,11 @@
     top: 50%;
     transform: translate(-50%, -50%);
 }
+
+.section {
+    margin-bottom: 3rem;
+}
+
+.section .section-body {
+    padding: 1.5rem;
+}

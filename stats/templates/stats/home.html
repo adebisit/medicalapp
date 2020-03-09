@@ -3,9 +3,20 @@
 {% load widget_tweaks %}
 {% load humanize %}
 
-{% block title %}<title>{{ patient }}</title>{% endblock %}
+{% block title %}<title>Stats</title>{% endblock %}
 
 {% block content2 %}
+<script>
+    age_dict = {{ age_dict | safe }}
+    weight_status_dict = {{ weight_status_dict | safe }}
+    blood_groups_dict = {{ blood_groups_dict | safe }}
+    genotypes_dict = {{ genotypes_dict | safe }}
+    
+    console.log(age_dict)
+    console.log(weight_status_dict)
+    console.log(blood_groups_dict)
+    console.log(genotypes_dict)
+</script>
 <div class="">
     <h1 class="text-center font-weight-bold">Medistat Stats</h1>
     <div class="content">
@@ -14,8 +25,8 @@
                 <h4>Age Distribution</h4>
             </div>
             <hr>
-            <div class="row section-body justify-content-between">
-                <canvas id="age-dist" class="col-md-8" height="250">
+            <div class="row section-body justify-content-between section-body">
+                <canvas id="age-dist" class="col-md-12" height="250">
                 </canvas>
             </div>
         </div>
@@ -24,8 +35,8 @@
                 <h4>Weight Status Distribution</h4>
             </div>
             <hr>
-            <div class="row section-body justify-content-between">
-                <canvas id="weight-dist" class="col-md-8" height="250">
+            <div class="row section-body justify-content-between section-body">
+                <canvas id="weight-dist" class="col-md-12" height="250">
                 </canvas>
             </div>
         </div>
@@ -34,8 +45,8 @@
                 <h4>Diet Distribution</h4>
             </div>
             <hr>
-            <div class="row section-body justify-content-between">
-                <canvas id="diet-dist" class="col-md-8" height="250">
+            <div class="row section-body justify-content-between section-body">
+                <canvas id="diet-dist" class="col-md-12" height="250">
                 </canvas>
             </div>
         </div>
@@ -44,8 +55,8 @@
                 <h4>Blood Group Distribution</h4>
             </div>
             <hr>
-            <div class="row section-body justify-content-between">
-                <canvas id="blood-dist" class="col-md-8" height="250">
+            <div class="row section-body justify-content-between section-body">
+                <canvas id="blood-dist" class="col-md-12" height="250">
                 </canvas>
             </div>
         </div>
@@ -54,46 +65,52 @@
                 <h4>Blood Group Compatibility</h4>
             </div>
             <hr>
-            <div class="row section-body justify-content-between blood-dist">
+            <div class="row section-body justify-content-between blood-dist section-body">
                 <div class="text-center">
-                    <div class="chart" data-percent="73" data-scale-color="transparent">
-                        <span class="label">73%</span>
+                    <div class="chart" data-percent="{{ blood_group_matching.aplus|default:0 }}" data-scale-color="transparent">
+                        <span class="label">{{ blood_group_matching.aplus|default:0 }}%</span>
                     </div>
                     <p>A+</p>
                 </div>
                 <div class="text-center">
-                    <div class="chart" data-percent="0" data-scale-color="transparent">
-                        <span class="label">0%</span>
+                    <div class="chart" data-percent="{{ blood_group_matching.aminus|default:0 }}" data-scale-color="transparent">
+                        <span class="label">{{ blood_group_matching.aminus|default:0 }}%</span>
+                    </div>
+                    <p>A-</p>
+                </div>
+                <div class="text-center">
+                    <div class="chart" data-percent="{{ blood_group_matching.bplus|default:0 }}" data-scale-color="transparent">
+                        <span class="label">{{ blood_group_matching.bplus|default:0 }}%</span>
                     </div>
                     <p>B+</p>
                 </div>
                 <div class="text-center">
-                    <div class="chart" data-percent="17" data-scale-color="transparent">
-                        <span class="label">17%</span>
+                    <div class="chart" data-percent="{{ blood_group_matching.bminus|default:0 }}" data-scale-color="transparent">
+                        <span class="label">{{ blood_group_matching.bminus|default:0 }}%</span>
                     </div>
                     <p>B-</p>
                 </div>
                 <div class="text-center">
-                    <div class="chart" data-percent="25" data-scale-color="transparent">
-                        <span class="label">25%</span>
+                    <div class="chart" data-percent="{{ blood_group_matching.oplus|default:0 }}" data-scale-color="transparent">
+                        <span class="label">{{ blood_group_matching.oplus|default:0 }}%</span>
                     </div>
                     <p>O+</p>
                 </div>
                 <div class="text-center">
-                    <div class="chart" data-percent="65" data-scale-color="transparent">
-                        <span class="label">65%</span>
+                    <div class="chart" data-percent="{{ blood_group_matching.ominus|default:0 }}" data-scale-color="transparent">
+                        <span class="label">{{ blood_group_matching.ominus|default:0 }}%</span>
                     </div>
                     <p>O-</p>
                 </div>
                 <div class="text-center">
-                    <div class="chart" data-percent="10" data-scale-color="transparent">
-                        <span class="label">10%</span>
+                    <div class="chart" data-percent="{{ blood_group_matching.abplus|default:0 }}" data-scale-color="transparent">
+                        <span class="label">{{ blood_group_matching.abplus|default:0 }}%</span>
                     </div>
                     <p>AB+</p>
                 </div>
                 <div class="text-center">
-                    <div class="chart" data-percent="40" data-scale-color="transparent">
-                        <span class="label">40%</span>
+                    <div class="chart" data-percent="{{ blood_group_matching.abminus|default:0 }}" data-scale-color="transparent">
+                        <span class="label">{{ blood_group_matching.abminus|default:0 }}%</span>
                     </div>
                     <p>AB-</p>
                 </div>
@@ -114,48 +131,30 @@
                 <h4>Genotype Compatibility</h4>
             </div>
             <hr>
-            <div class="row section-body justify-content-between genotype-dist">
+            <div class="row section-body justify-content-between genotype-dist section-body">
                 <div class="text-center">
-                    <div class="chart" data-percent="73" data-scale-color="transparent">
-                        <span class="label">73%</span>
+                    <div class="chart" data-percent="{{ genotype_matching.aa|default:0 }}" data-scale-color="transparent">
+                        <span class="label">{{ genotype_matching.aa|default:0 }}%</span>
                     </div>
-                    <p>A+</p>
+                    <p>AA</p>
                 </div>
                 <div class="text-center">
-                    <div class="chart" data-percent="0" data-scale-color="transparent">
-                        <span class="label">0%</span>
+                    <div class="chart" data-percent="{{ genotype_matching.as|default:0 }}" data-scale-color="transparent">
+                        <span class="label">{{ genotype_matching.as|default:0 }}%</span>
                     </div>
-                    <p>B+</p>
+                    <p>AS</p>
                 </div>
                 <div class="text-center">
-                    <div class="chart" data-percent="17" data-scale-color="transparent">
-                        <span class="label">17%</span>
+                    <div class="chart" data-percent="{{ genotype_matching.ac|default:0 }}" data-scale-color="transparent">
+                        <span class="label">{{ genotype_matching.ac|default:0 }}%</span>
                     </div>
-                    <p>B-</p>
+                    <p>AC</p>
                 </div>
                 <div class="text-center">
-                    <div class="chart" data-percent="25" data-scale-color="transparent">
-                        <span class="label">25%</span>
+                    <div class="chart" data-percent="{{ genotype_matching.ss|default:0 }}" data-scale-color="transparent">
+                        <span class="label">{{ genotype_matching.ss|default:0 }}%</span>
                     </div>
-                    <p>O+</p>
-                </div>
-                <div class="text-center">
-                    <div class="chart" data-percent="65" data-scale-color="transparent">
-                        <span class="label">65%</span>
-                    </div>
-                    <p>O-</p>
-                </div>
-                <div class="text-center">
-                    <div class="chart" data-percent="10" data-scale-color="transparent">
-                        <span class="label">10%</span>
-                    </div>
-                    <p>AB+</p>
-                </div>
-                <div class="text-center">
-                    <div class="chart" data-percent="40" data-scale-color="transparent">
-                        <span class="label">40%</span>
-                    </div>
-                    <p>AB-</p>
+                    <p>SS</p>
                 </div>
             </div>
         </div>
@@ -164,36 +163,30 @@
                 <h4>Pandemics/Diseases</h4>
             </div>
             <hr>
-            <div class="row section-body justify-content-between pandemics">
+            <div class="row section-body justify-content-between pandemics section-body">
                 <div class="text-center">
-                    <div class="chart" data-percent="73" data-scale-color="transparent">
-                        <span class="label">73%</span>
+                    <div class="chart" data-percent="{{ common_diseases.malaria|default:0 }}" data-scale-color="transparent">
+                        <span class="label">{{ common_diseases.malaria|default:0 }}%</span>
                     </div>
-                    <p>A+</p>
+                    <p>Malaria</p>
                 </div>
                 <div class="text-center">
-                    <div class="chart" data-percent="0" data-scale-color="transparent">
-                        <span class="label">0%</span>
+                    <div class="chart" data-percent="{{ common_diseases.cholera|default:0 }}" data-scale-color="transparent">
+                        <span class="label">{{ common_diseases.cholera|default:0 }}%</span>
                     </div>
-                    <p>B+</p>
+                    <p>Cholera</p>
                 </div>
                 <div class="text-center">
-                    <div class="chart" data-percent="17" data-scale-color="transparent">
-                        <span class="label">17%</span>
+                    <div class="chart" data-percent="{{ common_diseases.typhoid|default:0 }}" data-scale-color="transparent">
+                        <span class="label">{{ common_diseases.typhoid|default:0 }}%</span>
                     </div>
-                    <p>B-</p>
+                    <p>Typhoid</p>
                 </div>
                 <div class="text-center">
-                    <div class="chart" data-percent="25" data-scale-color="transparent">
-                        <span class="label">25%</span>
+                    <div class="chart" data-percent="{{ common_diseases.coronavirus|default:0 }}" data-scale-color="transparent">
+                        <span class="label">{{ common_diseases.coronavirus|default:0 }}%</span>
                     </div>
-                    <p>O+</p>
-                </div>
-                <div class="text-center">
-                    <div class="chart" data-percent="65" data-scale-color="transparent">
-                        <span class="label">65%</span>
-                    </div>
-                    <p>O-</p>
+                    <p>Coronavirus</p>
                 </div>
             </div>
         </div>
@@ -202,6 +195,10 @@
 {% endblock %}
 
 {% block inline-scripts %}
+
+<script>
+    
+</script>
 <script>
     $(function () {
         $(".chart").easyPieChart({

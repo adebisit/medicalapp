@@ -78,12 +78,12 @@ function getPieChartConfig(chart_type, labels, data) {
 }
 
 
-config = generateBarChartConfig("horizontalBar", ["A", "B", "C", "D", "E", "F", "G", "H"], [15, 20, 20, 30, 20, 15, 22, 18], "green")
+config = generateBarChartConfig("horizontalBar", Object.keys(age_dict), Object.values(age_dict), "green")
 canvas = document.getElementById("age-dist")
 var chart = canvas.getContext('2d');
 var ageDist = new Chart(chart, config)
 
-config = generateBarChartConfig("doughnut", ["A", "B", "C", "D", "E", "F"], [15, 20, 20, 30, 20, 15], ["red", "blue", "yellow", "black", "ash", "purple"])
+config = generateBarChartConfig("doughnut", Object.keys(weight_status_dict), Object.values(weight_status_dict), ["red", "blue", "yellow", "black", "ash", "purple"])
 canvas = document.getElementById("weight-dist")
 var chart = canvas.getContext('2d');
 var weightDist = new Chart(chart, config)
@@ -93,12 +93,12 @@ canvas = document.getElementById("diet-dist")
 var chart = canvas.getContext('2d');
 var dietDist = new Chart(chart, config)
 
-config = generateBarChartConfig("horizontalBar", ["A", "B", "C", "D", "E", "F", "G", "H"], [15, 20, 20, 30, 20, 15, 20, 10], "red")
+config = generateBarChartConfig("horizontalBar", Object.keys(blood_groups_dict), Object.values(blood_groups_dict), "red")
 canvas = document.getElementById("blood-dist")
 var chart = canvas.getContext('2d');
 var bloodChart = new Chart(chart, config)
 
-config = generateBarChartConfig("doughnut", ["A", "B", "C", "D", "E", "F"], [15, 20, 20, 30, 20, 15], ["red", "blue", "yellow", "black", "ash", "purple"])
+config = generateBarChartConfig("doughnut", Object.keys(genotypes_dict), Object.values(genotypes_dict), ["red", "blue", "yellow", "black", "ash", "purple"])
 canvas = document.getElementById("genotype-dist")
 var chart = canvas.getContext('2d');
 var bloodChart = new Chart(chart, config)

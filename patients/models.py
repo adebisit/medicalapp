@@ -37,11 +37,9 @@ class Patient(models.Model):
     blood_group = models.CharField(choices=BLOOD_GROUP_CHOICES, max_length=3, null=True, blank=True)
     GENOTYPE_CHOICES = (
         ('aa', "AA"),
-        ('ao', "AO"),
-        ('bb', "BB"),
-        ('bo', "BO"),
-        ('ab', "AB"),
-        ('oo', "OO")
+        ('as', "AS"),
+        ('SS', "SS"),
+        ('ac', "AC"),
     )
     genotype = models.CharField(choices=GENOTYPE_CHOICES, max_length=3, null=True, blank=True)
 
