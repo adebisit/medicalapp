@@ -83,7 +83,7 @@ div.filter-group label.title {
 }
 
 #filter-dropdown.show {
-    height: 300px;
+    height: 320px;
     border-color: rgba(0,0,0,.15);
     transition: height 0.25s ease-in;
 }

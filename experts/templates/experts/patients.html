@@ -16,6 +16,9 @@
             </div>
             <div id="filter-dropdown" class="m-2 hide">
                 <form id="filter-form" class="mx-2">
+                    <div class="d-flex pt-2">
+                        <a role="check-all-filters" class="text-primary mr-2">Check All</a> | <a role="clear-all-filters" class="text-primary ml-2">Uncheck All</a>
+                    </div>
                     <div class="row d-flex justify-content-between">
                         <div class="filter-group col-md-2" filter-role="blood-group">
                             <label class="title">Blood Group Filter</label>
@@ -88,37 +91,7 @@
                                 </div>
                             </div>
                         </div>
-            
-                        <div class="filter-group col-md-2" filter-role="genotype">
-                            <label class="title">GenoType Filter</label>
-                            <div class="">
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="aa" checked>
-                                    <label class="custom-control-label" for="aa">AA</label>
-                                </div>
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="ao" checked>
-                                    <label class="custom-control-label" for="ao">AO</label>
-                                </div>
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="bb" checked>
-                                    <label class="custom-control-label" for="bb">BB</label>
-                                </div>
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="bo" checked>
-                                    <label class="custom-control-label" for="bo">BO</label>
-                                </div>
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="ab" checked>
-                                    <label class="custom-control-label" for="ab">AB</label>
-                                </div>
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="oo" checked>
-                                    <label class="custom-control-label" for="oo">OO</label>
-                                </div>
-                            </div>
-                        </div>
-            
+
                         <div class="filter-group col-md-2" filter-role="weight-status">
                             <label class="title">Weight Status</label>
                             <div class="">
@@ -145,6 +118,28 @@
                                 <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" id="extreme-obesity-class-3" checked>
                                     <label class="custom-control-label" for="extreme-obesity-class-3">Extreme Obesity Class 3</label>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="filter-group col-md-2" filter-role="genotype">
+                            <label class="title">GenoType Filter</label>
+                            <div class="">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="aa" checked>
+                                    <label class="custom-control-label" for="aa">AA</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="ac" checked>
+                                    <label class="custom-control-label" for="ac">AC</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="as" checked>
+                                    <label class="custom-control-label" for="as">AS</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="ss" checked>
+                                    <label class="custom-control-label" for="ss">SS</label>
                                 </div>
                             </div>
                         </div>
@@ -243,6 +238,20 @@
     errorDisplay = $("#errorDisplay")
     loadingDisplay = $("#loadingDisplay")
 
+    $("a[role=check-all-filters]").click(e => {
+        $("#filter-form input[type=checkbox]").each((index, ele) => {
+            $(ele).prop("checked", true)
+        })
+    })
+
+    $("a[role=clear-all-filters]").click(e => {
+        $("#filter-form input[type=checkbox]").each((index, ele) => {
+            $(ele).prop("checked", false)
+        })
+        $("#filter-form input[type=text]").each((index, ele) => {
+            $(ele).val("")
+        })
+    })
     $("#apply-filter").click(e => {
         e.preventDefault()
         tableMessageWrapper.css("display", "block")
@@ -263,7 +272,6 @@
                 }
             })
         })
-        console.log(formData)
 
         $.ajax({
             url: "{% url 'experts:patients_filtered' %}",
@@ -271,13 +279,11 @@
             data: formData
         })
         .done(function (data) {
-            console.log(data)
             tableMessageWrapper.css("display", "none")
             loadingDisplay.css("display", "none")
             populateTable(data)
         })
         .fail(function (jqXHR, textStatus, errorThrown) {
-            console.log("There was an Error")
             errorDisplay.css("display", "block")
             loadingDisplay.css("display", "none")
         })

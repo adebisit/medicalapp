@@ -5,7 +5,6 @@ from django.db.models import F
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Case, When, F, Q, Value, CharField, Count
 from datetime import date
-from pprint import pprint
 # Create your views here.
 
 
@@ -78,7 +77,7 @@ def get_context_data():
     }
     for age_group in age_groups:
         age_dict[age_group["age_group"]] = age_group["age_group__count"]
-    print(age_dict)
+
     context_data["age_dict"] = age_dict
 
     weight_status_groups = patients.values("weight_status").annotate(Count('weight_status'))
@@ -92,14 +91,13 @@ def get_context_data():
     }
     for weight_status_group in weight_status_groups:
         weight_status_dict[weight_status_group["weight_status"]] = weight_status_group["weight_status__count"]
-    print(weight_status_dict)
+
     context_data["weight_status_dict"] = weight_status_dict
 
     blood_groups = patients.values("blood_group").annotate(Count('blood_group')).values("blood_group", "blood_group__count")
     blood_groups_dict = { "A+": 0,"A-": 0, "B+": 0, "B-": 0, "O+": 0, "O-": 0, "AB+": 0, "AB-": 0 }
     for blood_group in blood_groups:
         blood_groups_dict[blood_group["blood_group"].upper()] = blood_group["blood_group__count"]
-    print(blood_groups_dict)
 
     context_data["blood_groups_dict"] = blood_groups_dict
 
@@ -126,7 +124,6 @@ def get_context_data():
         blood_match_sum = sum(blood_groups_dict.get(blood.upper(), 0) for blood in matched_blood_types)
 
         blood_group_matching[blood_type.replace("+", "plus").replace("-", "minus")] = round(blood_match_sum / patients.count() * 100)
-    pprint(blood_group_matching)
     context_data["blood_group_matching"] = blood_group_matching
     
     genotypes = patients.values("genotype").annotate(Count('genotype')).values("genotype", "genotype__count")
@@ -138,7 +135,6 @@ def get_context_data():
     }
     for genotype in genotypes:
         genotypes_dict[genotype["genotype"].upper()] = genotype["genotype__count"]
-    print(genotypes_dict)
     context_data["genotypes_dict"] = genotypes_dict
 
     genotype_matching = {}
@@ -156,7 +152,6 @@ def get_context_data():
         genotype_matching[genotype] = round(genotype_match_sum / patients.count() * 100)
 
         # genotype_matching[genotype["genotype"]] = genotype["genotype__count"]
-    pprint(genotype_matching)
     context_data["genotype_matching"] = genotype_matching
 
     common_diseases = {
@@ -168,6 +163,5 @@ def get_context_data():
     
     for disease in common_diseases:
         common_diseases[disease] = round(History.objects.filter(diagnosis__contains=disease).values("patient").distinct().count() / patients.count() * 100, 2)
-    print(common_diseases)
     context_data["common_diseases"] = common_diseases
     return context_data

@@ -19,7 +19,6 @@ def signup(request):
 
         if form.is_valid():
             group = form.cleaned_data["group"]
-            print(group)
             user = form.save(commit=False)
             user.is_active = False
             user.save()
@@ -70,7 +69,6 @@ def activate(request, uidb64, token, group):
 
 
 def login_success(request):
-    print(request.user.groups.all())
     if request.user.groups.filter(name='Expert').exists():
         return redirect("experts:home")
     else:
